@@ -2,7 +2,7 @@
 
 A production ready RAG-powered chatbot that answers questions about programmes and admissions at [ha.ax](https://www.ha.ax/), based on the university's own website content.
 
-> This repository contains a revised version of the original ha.ax chatbot demo, incorporating stakeholder feedback and architectural improvements. The original demo repository can be found here: [ha.ax-chatbot-demo](https://github.com/yourusername/ha.ax-chatbot-demo)
+> This repository contains a revised version of the original ha.ax chatbot demo, incorporating stakeholder feedback and architectural improvements. The original demo repository can be found here: [ha.ax-chatbot-demo]([https://github.com/yourusername/ha.ax-chatbot-demo](https://github.com/zinebnadak/ha.ax-chatbot-demo.git))
 
 Public preview (Streamlit Community Cloud): [link]()
 
