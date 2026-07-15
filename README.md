@@ -26,3 +26,5 @@ Public preview (Streamlit Community Cloud): [link]()
 ## Handoff
 See [DEPLOY.md](DEPLOY.md) how I made step-by-step deployment instructions for ha.ax IT staff.
 
+Made by Zineb Nadak
+
