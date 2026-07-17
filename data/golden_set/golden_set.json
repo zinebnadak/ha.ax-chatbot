@@ -1,0 +1,322 @@
+[
+  {
+    "question": "Vilka utbildningar erbjuder ni?",
+    "expected_answer": "Högskolan på Åland erbjuder bachelorprogram inom Ingenjör & teknik (Energi/design/automation, IT-ingenjör, IT-Systemvetare, Marinteknik, Sjökapten), Ekonomi & ledarskap (Företagsekonomi, Företagsekonomi distans, Turism och ledarskap) och Hälsa & vård (Sjukskötare, Sjukskötare distans). Utöver dessa erbjuds masterprogrammet EASE (Energy Automation Sustainable Engineering, på engelska), kurser via Öppna högskoleleden, och fristående programkurser.",
+    "source_urls": [
+      "https://www.ha.ax/utbildning/",
+      "https://www.ha.ax/utbildning/master/",
+      "https://www.ha.ax/utbildning/oppna-hogskoleleden/",
+      "https://www.ha.ax/utbildning/fristaende-programkurser/"
+    ],
+    "category": "programme_coverage",
+    "language": "sv"
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "programme_coverage",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "programme_coverage",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "programme_coverage",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "programme_coverage",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "programme_coverage",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "programme_coverage",
+    "language": ""
+  },
+  {
+    "question": "När är ansökningstiden?",
+    "expected_answer": "Ansökningstiden för bachelorprogrammen är 16 mars till 15 april 2026. Masterprogrammet EASE, kurserna på Öppna högskolan och Öppna högskoleleden har egna, separata ansökningstider som skiljer sig från bachelorprogrammens (info finns på open.ax).",
+    "source_urls": "",
+    "category": "fact_scoping",
+    "language": "sv"
+  },
+  {
+    "question": "Vad kostar det att studera på EASE?",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "fact_scoping",
+    "language": "sv"
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "fact_scoping",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "fact_scoping",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "fact_scoping",
+    "language": ""
+  },
+  {
+    "question": "Hur ansöker jag?",
+    "expected_answer": "Du ansöker genom webbansökan: klicka på Ansök nu-knappen (syns endast under ansökningstiden), välj programmen du söker till i rätt ordning, fyll i din e-postadress, öppna bekräftelsemejlet från Wilma och klicka på länken, fyll sedan i ansökan och ladda upp bilagorna. Ansökningsblanketten i pdf ska endast användas i undantagsfall, t.ex. om du har problem att fylla i webbansökan eller ansöker utanför ansökningstiden.",
+    "source_urls": "",
+    "category": "process_retrieval",
+    "language": "sv"
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "process_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "process_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "process_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "process_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "process_retrieval",
+    "language": ""
+  },
+  {
+    "question": "Kan jag söka med svenskt betyg?",
+    "expected_answer": "Ja, det går bra att söka med svenskt gymnasiebetyg. Eftersom betyget redan är på svenska behövs ingen översättning eller separat språkintyg.",
+    "source_urls": ""
+    "category": "relevance_filtering",
+    "language": "sv"
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "relevance_filtering",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "relevance_filtering",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "relevance_filtering",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "relevance_filtering",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "relevance_filtering",
+    "language": ""
+  },
+  {
+    "question": "Kan jag söka till ett program utan gymnasiebetyg?",
+    "expected_answer": "Om du inte uppfyller de allmänna antagningskraven kan du antingen ansöka om dispens hos högskolans antagningsnämnd, eller läsa kurser via Öppna högskoleleden ,där du läser tillsammans med ordinarie studerande, och efter 30 avlagda studiepoäng blir behörig att söka in på programmet med kurserna tillgodoräknade.",
+    "source_urls": "",
+    "category": "alternative_pathways",
+    "language": "sv"
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "alternative_pathways",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "alternative_pathways",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "alternative_pathways",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "alternative_pathways",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "alternative_pathways",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  },
+  {
+    "question": "",
+    "expected_answer": "",
+    "source_urls": [],
+    "category": "cross_language_retrieval",
+    "language": ""
+  }
+]

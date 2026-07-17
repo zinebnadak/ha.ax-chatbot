@@ -8,3 +8,5 @@ chroma_db/
 .pytest_cache/
 
 *.egg-info/
+
+notes.txt

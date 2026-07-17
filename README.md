@@ -8,6 +8,9 @@ Public preview (Streamlit Community Cloud): [link]()
 
 ---
 
+# ha_rag_package
+The RAG chatbot backend.
+
 ---
 
 ## Running cost estimate
