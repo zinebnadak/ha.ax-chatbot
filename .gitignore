@@ -3,3 +3,8 @@
 __pycache__/
 *.pyc
 chroma_db/
+
+.ragas_cache/
+.pytest_cache/
+
+*.egg-info/

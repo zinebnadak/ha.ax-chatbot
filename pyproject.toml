@@ -1,7 +1,12 @@
 [project]
-name = "ha-ax-chatbot"
+name = "ha-rag-package"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "openai>=2.46.0",
+    "pytest>=9.1.1",
+    "python-dotenv>=1.2.2",
+    "ragas>=0.4.3",
+]
