@@ -12,58 +12,86 @@
     "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Kan man utbilda sig på masternivå på Högskolan?",
+    "expected_answer": "Jo! Högskolan erbjuder för tillfället endast ett Masterprogram på engelska: Energy Automation Sustainable Engineering, 60 sp.   ",
+    "source_urls": "https://www.ha.ax/utbildning/master/",
     "category": "programme_coverage",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Vilken utbildningsform och hur många studieplatser erbjuds för masterprogrammet av Högskolan på Åland?",
+    "expected_answer": "Sudierna för masterprogrammet 'Energy Automation Sustainable Engineering, 60 sp' genomförs i hybridformat: dels online, dels på plats genom några campusveckor hos Högskolan på Åland. Det finns totalt 20 antal studieplatser. ",
+    "source_urls": "https://www.ha.ax/utbildning/master/",
     "category": "programme_coverage",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Hur lång är masterprogrammet EASE? ",
+    "expected_answer": "Utbildningen är ettårig (60 studiepoäng).",
+    "source_urls": "https://www.ha.ax/utbildning/master/",
     "category": "programme_coverage",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Vem kan anmäla sig till Öppna högskolans kurser?",
+    "expected_answer": "Alla. Precis som namnet säger är Öppna högskolans kurser öppna för alla. Det betyder att det inte ställs några krav på tidigare studier eller erfarenhet. Antagningen sker enbart utifrån den ordning deltagarna anmält sig.",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-kurser/",
     "category": "programme_coverage",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Vad kostar kurserna vid Öppna högskolan?",
+    "expected_answer": "Kurserna har en kursavgift som framgår i kursbeskrivningen. Som programstuderande på högskolan kan du läsa valbara kurser via Öppna högskolan gratis, ifall kursen kan godkännas i din studieplan.",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-kurser/",
     "category": "programme_coverage",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "När kan jag anmäla mig till Öppna högskolans kurser?",
+    "expected_answer": "Anmälningstiderna för kurserna på Öppna högskolan är inte samma som ansökningstiden till högskolans utbildningsprogram, utan varje kurs har ett eget sista anmälningsdatum. Anmälan till höstterminens kurser öppnas i början av juni och anmälan till vårterminens kurser i december. Anmälningar tas därefter emot fram tills några veckor innan kursen börjar. Du hittar och anmäler dig till kurserna på Öppna högskolans webbplats: https://www.open.ax/kurser-och-fortbildningar/sok-kurs/",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-kurser/",
     "category": "programme_coverage",
-    "language": ""
+    "language": "sv"
+  },
+  {
+    "question": "Kan jag läsa kurser vid Högskolan på Åland utan att vara antagen till ett utbildningsprogram?",
+    "expected_answer": "Ja, det finns två vägar. Via Öppna högskolan kan du läsa universitets- och högskolekurser och samla studiepoäng, utan att vara antagen till ett utbildningsprogram. Det är också möjligt att läsa fristående programkurser vid högskolans ordinarie utbildningsprogram tillsammans med de ordinarie studerande. För att kunna läsa fristående programkurser behöver du inte ha högskolebehörighet, men vissa kurser kan kräva förkunskaper.",
+    "source_urls": ["https://www.ha.ax/utbildning/fristaende-programkurser/", "https://www.ha.ax/utbildning/fristaende-kurser/"],
+    "category": "programme_coverage",
+    "language": "sv"
+  },
+  {
+    "question": "Vad kostar det att läsa fristående programkurser vid Högskolan på Åland?",
+    "expected_answer": "Om du blir antagen erläggs en kursavgift, som från och med hösten 2024 är 50€ per kurs.",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-programkurser/",
+    "category": "programme_coverage",
+    "language": "sv"
+  },
+  {
+    "question": "Vilka rättigheter har jag som studerande vid fristående programkurser?",
+    "expected_answer": "Som studerande vid fristående programkurser har man delvis samma rättigheter som en programstuderande. Dessa rättigheter innebär: en mejladress, tillgång till högskolebibliotekets fysiska och digitala resurser, möjlighet att låna Chromebooks på högskolan samt studiehandledning.",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-programkurser/",
+    "category": "programme_coverage",
+    "language": "sv"
+  },
+  {
+    "question": "Vad är Öppna högskoleleden?",
+    "expected_answer": "Högskolans utbildningsprogram ger dig möjlighet att via Öppna högskolan läsa vissa kurser tillsammans med ordinarie studerande. Läs 30 studiepoäng (med minimivitsord 3) och bli behörig att söka till högskolans utbildningsprogram och samtidigt få kurserna tillgodoräknade.",
+    "source_urls": "https://www.ha.ax/utbildning/oppna-hogskoleleden/",
+    "category": "programme_coverage",
+    "language": "sv"
+  },
+  {
+    "question": "Hur lång är utbildningen till IT-ingenjör och hur många studiepoäng omfattar den?",
+    "expected_answer": "Utbildningen till IT-ingenjör omfattar 240 studiepoäng (4 år) och leder till examen som ingenjör inom datateknik / kandidatexamen.",
+    "source_urls": "https://www.ha.ax/utbildning/studera-it-ingenjor/",
+    "category": "programme_coverage",
+    "language": "sv"
   },
   {
     "question": "När är ansökningstiden?",
     "expected_answer": "Ansökningstiden för bachelorprogrammen är 16 mars till 15 april 2026. Masterprogrammet EASE, kurserna på Öppna högskolan och Öppna högskoleleden har egna, separata ansökningstider som skiljer sig från bachelorprogrammens (info finns på open.ax).",
-    "source_urls": "",
-    "category": "fact_scoping",
-    "language": "sv"
-  },
-  {
-    "question": "Vad kostar det att studera på EASE?",
-    "expected_answer": "",
-    "source_urls": [],
+    "source_urls": "???",
     "category": "fact_scoping",
     "language": "sv"
   },
@@ -91,7 +119,7 @@
   {
     "question": "Hur ansöker jag?",
     "expected_answer": "Du ansöker genom webbansökan: klicka på Ansök nu-knappen (syns endast under ansökningstiden), välj programmen du söker till i rätt ordning, fyll i din e-postadress, öppna bekräftelsemejlet från Wilma och klicka på länken, fyll sedan i ansökan och ladda upp bilagorna. Ansökningsblanketten i pdf ska endast användas i undantagsfall, t.ex. om du har problem att fylla i webbansökan eller ansöker utanför ansökningstiden.",
-    "source_urls": "",
+    "source_urls": "???",
     "category": "process_retrieval",
     "language": "sv"
   },
@@ -133,92 +161,85 @@
   {
     "question": "Kan jag söka med svenskt betyg?",
     "expected_answer": "Ja, det går bra att söka med svenskt gymnasiebetyg. Eftersom betyget redan är på svenska behövs ingen översättning eller separat språkintyg.",
-    "source_urls": ""
-    "category": "relevance_filtering",
+    "source_urls": "???",
+    "category": "scope_creep",
     "language": "sv"
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "relevance_filtering",
+    "category": "scope_creep",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "relevance_filtering",
+    "category": "scope_creep",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "relevance_filtering",
+    "category": "scope_creep",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "relevance_filtering",
+    "category": "scope_creep",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "relevance_filtering",
+    "category": "scope_creep",
     "language": ""
   },
   {
     "question": "Kan jag söka till ett program utan gymnasiebetyg?",
     "expected_answer": "Om du inte uppfyller de allmänna antagningskraven kan du antingen ansöka om dispens hos högskolans antagningsnämnd, eller läsa kurser via Öppna högskoleleden ,där du läser tillsammans med ordinarie studerande, och efter 30 avlagda studiepoäng blir behörig att söka in på programmet med kurserna tillgodoräknade.",
-    "source_urls": "",
-    "category": "alternative_pathways",
+    "source_urls": "???",
+    "category": "dead_end_answer",
     "language": "sv"
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "alternative_pathways",
+    "category": "dead_end_answer",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "alternative_pathways",
+    "category": "dead_end_answer",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "alternative_pathways",
+    "category": "dead_end_answer",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "alternative_pathways",
+    "category": "dead_end_answer",
     "language": ""
   },
   {
     "question": "",
     "expected_answer": "",
     "source_urls": [],
-    "category": "alternative_pathways",
-    "language": ""
-  },
-  {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "out_of_scope",
+    "category": "dead_end_answer",
     "language": ""
   },
   {
@@ -267,56 +288,91 @@
     "question": "",
     "expected_answer": "",
     "source_urls": [],
+    "category": "out_of_scope",
+    "language": ""
+  },
+  {
+    "question": "Vad får jag lära mig i EASE programmet?",
+    "expected_answer": "Det här får du lära dig:\n* färdigheter i att designa och implementera analysverktyg i övervakningssystem\n* färdigheter som behövs för att anpassa övervakningssystem till olika tillämpningar inom ingenjörsvetenskap, särskilt inom förnybara energisystem och smarta elnät\n* hur man stödjer förändrade affärsmodeller mot att inkludera service och underhåll inom ingenjörstillämpningar på en generell nivå\n* hur digitala tvillingar kan användas för att designa och förbättra automatiska system\n* hur modeller av tekniska system kan kombineras med sensordata för systemhälsohantering och prediktivt underhåll\n* hur du kan tillämpa din förståelse i övervakningssystem för att t.ex. förbättra drift, automation och styrning\n* olika strategier som kan användas för att styra genererad effekt utöver att styra efterfrågan i elnät.",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "cross_language_retrieval",
+    "language": "sv"
+  },
+  {
+    "question": "Vilken arbetslivserfarenhet krävs för att vara behörig till EASE-programmet?",
+    "expected_answer": "Alla sökande måste ha minst två års (24 månaders) relevant arbetslivserfarenhet efter avslutad kandidatexamen i ingenjörsvetenskap för att uppfylla behörighetskraven. Relevant arbetslivserfarenhet kan t.ex. vara erfarenhet inom utveckling, drift, underhåll, mjukvara eller ett liknande ingenjörsområde.",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "cross_language_retrieval",
+    "language": "sv"
+  },
+  {
+    "question": "Vad fokuserar EASE-programmet på?",
+    "expected_answer": "I det här programmet fokuserar vi på hållbar förändring i energisystem ur ett lokalt och ett globalt perspektiv. Du får lära dig hur analys- och modelleringsverktyg kan implementeras i övervakningssystem i syfte att skapa förbättrad förståelse och effektivare drift. Vi tittar på hur fysik och data kan användas för att skapa digitala tvillingar och hur digitala modeller stödjer hållbar förändring inom ingenjörsdesign och övergången mot en cirkulär ekonomi. Programmet förbereder dig för att ta ledarskapsroller inom olika ingenjörsområden och ger dig de färdigheter som behövs för att stödja övergången mot mer hållbar ingenjörskonst.",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "cross_language_retrieval",
+    "language": "sv"
+  },
+  {
+    "question": "Vilka framtida jobb kan jag få efter EASE-programmet?",
+    "expected_answer": "Framtida positioner efter avslutad masterexamen är ledarskapsroller inom exempelvis: utveckling av mät- och övervakningssystem för ingenjörstillämpningar, utveckling av automation och produktionslinjer samt effektivisering genom användning av modeller och data, att driva hållbar förändring i tekniska system och stödja övergången mot ett mer cirkulärt samhälle.",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "cross_language_retrieval",
+    "language": "sv"
+  },
+  {
+    "question": "Hur är studierna i EASE-programmet upplagda?",
+    "expected_answer": "Onlinestudier kombinerade med campusveckor. Introduktionstillfällen hålls online och föreläsningar finns tillgängliga som en blandning av förinspelade, ljudkommenterade presentationer och live-onlinesessioner. Uppgifter diskuteras i studiegrupper online och dagböcker används för att sammanfatta diskussioner och framsteg skriftligt. Fysiska träffar med fokus på laborationer, presentationer och industribesök är schemalagda 3 veckor per termin.",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "cross_language_retrieval",
+    "language": "sv"
+  },
+  {
+    "question": "Vilka kurser ingår i EASE-programmet?",
+    "expected_answer": "Dessa kurser ingår i EASE-programmet. Eftersom programmet är på engelska så är kursnamnen också på engelska:
+      Renewable Energy Systems – Design and Optimization (5 ECTS)
+      Data Acquisition and Analytics (5 ECTS)
+      Designing Digital Twins (5 ECTS)
+      Changing Energy Systems and Electric Grids (5 ECTS)
+      Automation and Digital Twins (5 ECTS)
+      Predictive Maintenance (5 ECTS)
+      Master´s Thesis 30 ECTS",
+    "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
     "language": ""
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Vad kostar EASE-programmet för sökande utanför EU/EES?",
+    "expected_answer": "Sökande från länder utanför EU/EES måste betala terminsavgifter. Det här masterprogrammet, som omfattar 60 ECTS, kostar 8 000 euro. Om en studerande inte kan slutföra examen inom den angivna studietiden behöver den studerande betala 4 000 euro per extra termin tills examen är slutförd.Inga stipendier finns tillgängliga för masterstudier, men vi har ett early bird-erbjudande. Genom att bindande acceptera studieplatserbjudandet från Högskolan på Åland och betala terminsavgiften inom 14 dagar betalar en antagen studerande en early bird-terminsavgift på 5000 euro för det första läsåret.\nHögskolan på Åland förbehåller sig rätten att göra indexjusteringar av terminsavgifterna och early bird-erbjudandet under studietiden.",
+    "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Hur lämnar jag in förhandsuppgiften till EASE-programmet?",
+    "expected_answer": "Lämna in förhandsuppgiften genom att ladda upp alla uppgifter till de avsedda bilagefälten i din ansökan. Alla tre uppgifter ska lämnas in i PDF-format. Namnge bilagefilen/-filerna på följande sätt: Efternamn_Förnamn_beskrivning/dokumentnamn. Kombinera sidorna i samma dokument till en fil. Om de styrkande dokumenten inte laddas upp i din ansökan måste de skickas via e-post till info@ha.ax.",
+    "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Vad ska motivationsbrevet till EASE-programmet innehålla?",
+    "expected_answer": "Motivationsbrevet ska vara högst 700 ord och beskriva varför du anser dig vara en bra kandidat för programmet.",
+    "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "När ska jag ansöka till EASE-programmet och när får jag svar?",
+    "expected_answer": "Deadline för att lämna in förhandsuppgiften och alla styrkande dokument är 6 mars 2026 kl. 15:00 EEST, UTC+3:00. Antagningsbesked skickas ut 17 mars 2026.",
+    "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Hur ansöker jag till EASE-programmet?",
+    "expected_answer": "Studerande väljs ut baserat på en förhandsuppgift som inkluderar ett motivationsbrev och två separata uppgifter; Simuleringar och Dataanalys.\nUppgift 1: Motivationsbrevet – motivationsbrevet ska vara högst 700 ord och beskriva varför du anser dig vara en bra kandidat för programmet.\nUppgift 2: Simuleringar – du ska verifiera resultatet med figurer enligt instruktionerna i det bifogade förhandsuppgiftsdokumentet.\nUppgift 3: Dataanalys – du ska bestämma börvärden enligt instruktionerna i det bifogade förhandsuppgiftsdokumentet.\nLämna in förhandsuppgiften genom att ladda upp alla uppgifter till de avsedda bilagefälten i din ansökan. Alla tre uppgifter ska lämnas in i PDF-format.",
+    "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
-    "language": ""
-  },
-  {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "cross_language_retrieval",
-    "language": ""
-  },
-  {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "cross_language_retrieval",
-    "language": ""
+    "language": "sv"
   }
 ]
