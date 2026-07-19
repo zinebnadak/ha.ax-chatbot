@@ -90,73 +90,101 @@
   },
   {
     "question": "När är ansökningstiden?",
-    "expected_answer": "Ansökningstiden för bachelorprogrammen är 16 mars till 15 april 2026. Masterprogrammet EASE, kurserna på Öppna högskolan och Öppna högskoleleden har egna, separata ansökningstider som skiljer sig från bachelorprogrammens (info finns på open.ax).",
-    "source_urls": "???",
-    "category": "fact_scoping",
+    "expected_answer": "Ansökningstiden för utbildningsprogrammen är 16 mars till 15 april 2026. Masterprogrammet EASE, kurserna på Öppna högskolan och Öppna högskoleleden har egna, separata ansökningstider som skiljer sig från utbildningsprogrammens (info finns på open.ax).",
+    "source_urls": ["https://www.ha.ax/utbildning/ansokan/","https://www.ha.ax/en/ease/", "https://www.ha.ax/utbildning/fristaende-kurser/","https://www.ha.ax/utbildning/oppna-hogskoleleden/","https://www.open.ax/kurser-och-fortbildningar/" ],
+    "category": "programme_coverage",
     "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "fact_scoping",
-    "language": ""
-  },
-  {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "fact_scoping",
-    "language": ""
-  },
-  {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "fact_scoping",
-    "language": ""
-  },
-  {
-    "question": "Hur ansöker jag?",
-    "expected_answer": "Du ansöker genom webbansökan: klicka på Ansök nu-knappen (syns endast under ansökningstiden), välj programmen du söker till i rätt ordning, fyll i din e-postadress, öppna bekräftelsemejlet från Wilma och klicka på länken, fyll sedan i ansökan och ladda upp bilagorna. Ansökningsblanketten i pdf ska endast användas i undantagsfall, t.ex. om du har problem att fylla i webbansökan eller ansöker utanför ansökningstiden.",
-    "source_urls": "???",
-    "category": "process_retrieval",
+    "question": "När är deadline för masterprogrammet EASE?",
+    "expected_answer": "Ansökan till EASE ska vara inlämnad (pre-assignment och alla bilagor) senast den 6 mars 2026 kl. 15.00",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "wrong_programme_facts",
     "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "process_retrieval",
+    "question": "Vad är antagningskraven för utbildningsprogrammet i energi, design och automation? ",
+    "expected_answer": "För att kunna bli antagen till utbildningsprogrammet i energi, design och automation behöver du uppfylla både högskolans allmänna antagningskrav, som är gemensamma för alla utbildningsprogram vid högskolan, och programmets antagningskrav.\nAntagningskrav till utbildningsprogrammet i energi, design och automation:\nSlutvitsord i svenska, engelska, matematik och fysik.\nStuderande med gymnasiebetyg från Sverige: Godkänt betyg i svenska A, engelska A, matematik B och fysik A/naturkunskap A+B. Eller enligt nya gymnasiereformen (GY2011): svenska 2, engelska 5, matematik 2a/2b/2c och fysik 1a/1b1 eller naturkunskap 2.",
+    "source_urls": "https://www.ha.ax/utbildning/studera-energi-design-automation/",
+    "category": "wrong_programme_facts",
+    "language": "sv"
+  },
+  {
+    "question": "Hur många antagningsplatser har utbildningsprogrammet i företagsekonomi",
+    "expected_answer": "Nytt för i år är att det antas 20 nybörjarplatser på campus och 20 nybörjarplatser på distans",
+    "source_urls": ["https://www.ha.ax/utbildning/studera-foretagsekonomi/", "https://www.ha.ax/utbildning/studera-foretagsekonomi-distans/"],
+    "category": "wrong_programme_facts",
     "language": ""
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "process_retrieval",
-    "language": ""
+    "question": "Vem är programansvarig för utbildningsprogrammet IT-ingenjör och vad är mejl-adressen?",
+    "expected_answer": "Jonas Waller är programansvarig med mejl-adressen: jonas.waller@ha.ax ",
+    "source_urls": "https://www.ha.ax/utbildning/studera-it-ingenjor/",
+    "category": "wrong_programme_facts",
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "process_retrieval",
-    "language": ""
+    "question": "Hur lång är utbildningen i marinteknik och hur många studiepoäng omfattar den?",
+    "expected_answer": "Utbildningsprogramment i marinteknik är 270 studiepoäng (sp) och är fyra och ett halvt (4,5) års studier.",
+    "source_urls": "https://www.ha.ax/utbildning/studera-marinteknik/",
+    "category": "wrong_programme_facts",
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "process_retrieval",
-    "language": ""
+    "question": "Vad heter examen man får av utbildningen sjukskötare",
+    "expected_answer": "Sjukskötarutbildningen leder till en finsk yrkeshögskoleexamen i social- och hälsovård, 210 sp, och titeln Sjukskötare YH. På engelska heter examen Bachelor of Health Care, 210 ECTS. Examen motsvarar en svensk kandidatexamen (bachelorexamen).",
+    "source_urls": ["https://www.ha.ax/utbildning/studera-till-sjukskotare/","https://www.ha.ax/utbildning/studera-till-sjukskotare-distans/"],
+    "category": "wrong_programme_facts",
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
-    "category": "process_retrieval",
-    "language": ""
+    "question": "Hur ansöker jag till utbildningsprogrammen?",
+    "expected_answer": "Du ansöker genom att fylla i webbansökan direkt på nätet, senast 15 april 2026:\n1. Klicka på Ansök nu-knappen (syns endast under ansökningstiden, 16 mars–15 april 2026)\n2. Välj programmen som du söker till (se röda fliken Välj utbildning). Kom ihåg att placera programmen i rätt ordning. Klicka på Gå vidare.\n3. Fyll i din e-postadress. Klicka på Skicka bekräftelse.\n4. Öppna din e-post och mejlet från Wilma. Klicka på länken.\n5. Fyll i ansökan och ladda upp bilagorna. Skicka in.\nOm du inte har möjlighet att ansöka via webbansökan kan du fylla i ansökningsblanketten i pdf och mejla den till info@ha.ax, eller skriva ut blanketten och skicka den per post till Högskolan på Åland, PB 1010, AX-22111 Mariehamn, Åland, Finland.",
+    "source_urls": "https://www.ha.ax/utbildning/ansokan/",
+    "category": "wrong_procedure",
+    "language": "sv"
+  },
+  {
+    "question": "Hur ansöker jag till masterprogrammet EASE?",
+    "expected_answer": "Antagningen till EASE sker genom en obligatorisk förhandsuppgift (pre-assignment) som består av ett motivationsbrev och två separata uppgifter:\nUppgift 1: Motivationsbrev – max 700 ord om varför du är en bra kandidat för programmet (se instruktioner i pre-assignment-dokumentet).\nUppgift 2: Simuleringar – du ska verifiera resultatet med figurer enligt instruktionerna i pre-assignment-dokumentet.\nUppgift 3: Dataanalys – du ska bestämma börvärden enligt instruktionerna; data finns i dokumentet Heat Control.\nSå lämnar du in förhandsuppgiften:\n– Ladda upp alla tre uppgifter som bilagor i din ansökan, i PDF-format.\n– Namnge filerna enligt mönstret Efternamn_Förnamn_beskrivning, t.ex. Smith_Mary_motivation letter.\n– Slå ihop sidor som hör till samma dokument till en fil.\n– Om bilagorna inte laddas upp i ansökan ska de skickas per e-post till info@ha.ax.\nDeadline för förhandsuppgiften och alla bilagor är 6 mars 2026 kl. 15.00.",
+    "source_urls": "https://www.ha.ax/en/ease/",
+    "category": "wrong_procedure",
+    "language": "sv"
+  },
+  {
+    "question": "Hur gör jag för att läsa fristående programkurser vid Högskolan på Åland?",
+    "expected_answer": "Du anhåller om att läsa fristående programkurser via högskolans formulär (länkat på sidan Fristående programkurser). Du behöver inte ha högskolebehörighet, men vissa kurser kan kräva förkunskaper. Aktuella kurser med kursbeskrivningar hittar du under utbildningsprogrammens egna sidor. Om du blir antagen betalar du en kursavgift på 50 € per kurs (fr.o.m. hösten 2024).",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-programkurser/",
+    "category": "wrong_procedure",
+    "language": "sv"
+  },
+  {
+    "question": "Hur gör jag för att bli behörig till ett utbildningsprogram via Öppna högskoleleden?",
+    "expected_answer": "Du anmäler dig till hela kurspaketet på 30 studiepoäng via Öppna högskolans webbplats (open.ax/kurser-och-fortbildningar, välj kurstyp \"Öh-leden\"). Kurspaketet kostar totalt 300 €. Observera att platserna är begränsade. När du har läst 30 studiepoäng med minimivitsord 3 blir du behörig att söka till högskolans utbildningsprogram, och kurserna du läst tillgodoräknas i utbildningen.",
+    "source_urls": "https://www.ha.ax/utbildning/oppna-hogskoleleden/",
+    "category": "wrong_procedure",
+    "language": "sv"
+  },
+  {
+    "question": "Hur kompletterar jag min ansökan med bilagorna?",
+    "expected_answer": "Ansökan ska kompletteras med kopia av examensbetyg från gymnasiet och eventuella arbetsintyg senast den 8 juni 2026. Det gäller alla sökande, även sökande med gymnasiebetyg från åländska och fastländska gymnasier. Kompletteringarna kan bifogas till den elektroniska ansökan, mejlas till info@ha.ax eller postas. Till examensbetyg från yrkesgymnasiet ska studieregisterutdrag bifogas. Sökande till sjökaptensprogrammet ska också komplettera med ett giltigt finskt eller svenskt läkarintyg för däckstjänst på fartyg, senast den 8 juni 2026.",
+    "source_urls": "https://www.ha.ax/utbildning/ansokan/",
+    "category": "wrong_procedure",
+    "language": "sv"
+  },
+  {
+    "question": "Hur ansöker jag till utbildningsprogrammet marinteknik?",
+    "expected_answer": "Ansökan till Marinteknikprogrammet sker på våren – ansökningstiden är 16 mars till 15 april 2026 – och utbildningen startar till hösten. Du ansöker via webbansökan på sidan Ansökan (Ansök nu-knappen, som syns endast under ansökningstiden). Ansökan ska kompletteras med kopia av examensbetyg från gymnasiet och eventuella arbetsintyg senast den 8 juni 2026; till examensbetyg från yrkesgymnasiet ska studieregisterutdrag bifogas. Antagningsbeskeden skickas ut 18 juni 2026 och ska besvaras senast 13 juli 2026.",
+    "source_urls": ["https://www.ha.ax/utbildning/studera-marinteknik/", "https://www.ha.ax/utbildning/ansokan/"],
+    "category": "wrong_procedure",
+    "language": "sv"
+  },
+  {
+    "question": "Hur ansöker jag till kursen 'Arbetsplatspsykologi - Ht26 Ledarskap I, 5 sp'",
+    "expected_answer": "Anmälan till kurser på Öppna högskolan görs på Öppna högskolans webbplats (open.ax/kurser-och-fortbildningar/sok-kurs), där du hittar kursen och anmäler dig. Varje kurs har ett eget sista anmälningsdatum – anmälan till höstterminens kurser öppnas i början av juni och tas emot fram tills några veckor innan kursen börjar. Kursavgiften framgår av kursbeskrivningen på open.ax.",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-kurser/",
+    "category": "wrong_procedure",
+    "language": "sv"
   },
   {
     "question": "Kan jag söka med svenskt betyg?",
@@ -166,11 +194,11 @@
     "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Jag har hört att man behöver vissa betyg för att bli antagen till fristående kurser – gäller det Öppna högskolans kurser?",
+    "expected_answer": "Nej. Precis som namnet säger är Öppna högskolans kurser öppna för alla. Det betyder att det inte ställs några krav på tidigare studier eller erfarenhet. Antagningen sker enbart utifrån den ordning deltagarna anmält sig.",
+    "source_urls": "https://www.ha.ax/utbildning/fristaende-kurser/",
     "category": "scope_creep",
-    "language": ""
+    "language": "sv"
   },
   {
     "question": "",
@@ -202,31 +230,31 @@
   },
   {
     "question": "Kan jag söka till ett program utan gymnasiebetyg?",
-    "expected_answer": "Om du inte uppfyller de allmänna antagningskraven kan du antingen ansöka om dispens hos högskolans antagningsnämnd, eller läsa kurser via Öppna högskoleleden ,där du läser tillsammans med ordinarie studerande, och efter 30 avlagda studiepoäng blir behörig att söka in på programmet med kurserna tillgodoräknade.",
-    "source_urls": "???",
+    "expected_answer": "Högskolan kan även anta sökande som inte uppfyller antagningskraven, men som enligt högskolans bedömning anses ha tillräckliga kunskaper och färdigheter för högskolestudier. Sökande kan ansöka om dispens för behörighet till högskolestudier till högskolans antagningsnämnd. Om du är intresserad av att studera vid något av Högskolan på Ålands utbildningsprogram, men inte uppfyller antagningskraven, så har du möjlighet att läsa kurser via Öppna högskoleleden. Vid Öppna högskoleleden läser du kurser tillsammans med högskolans studerande och när du avlagt 30 studiepoäng är du behörig att söka in på programmet och får de kurser du läst tillgodo.",
+    "source_urls": "https://www.ha.ax/utbildning/ansokan/",
     "category": "dead_end_answer",
     "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Kan jag kombinera heltidsjobb med mina studier till sjukskötare?",
+    "expected_answer": "Nej, det är inte möjligt. Sjukskötarutbildningen är på heltid och kräver ca 40 timmars studier per vecka. Teoretisk undervisning är i huvudsak på dagtid, men undervisning kvällstid och på helger kan förekomma. Den verksamhetsförlagda utbildningen (VFU) sker under handledning. Som studerande följer du handledarens schema, vilket kan innebära treskifts- och helgarbete. ",
+    "source_urls": "https://www.ha.ax/bo-studera/faq/",
     "category": "dead_end_answer",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Kan jag börja studera till IT-ingenjör vid Högskolan på Åland hösten 2026?",
+    "expected_answer": "Utbildningsprogrammet för IT-ingenjör startar inte hösten 2026.",
+    "source_urls": "https://www.ha.ax/utbildning/studera-it-ingenjor/",
     "category": "dead_end_answer",
-    "language": ""
+    "language": "sv"
   },
   {
-    "question": "",
-    "expected_answer": "",
-    "source_urls": [],
+    "question": "Vad händer om jag inte hinner skicka in bilagorna i tid?",
+    "expected_answer": "De ansökningar som inte kompletterats med betyg inom utsatt tid beaktas inte vid antagningen. Man kan komplettera ännu under sommaren, men ansökan placeras då efter de som skickat in allt i tid.",
+    "source_urls": "https://www.ha.ax/bo-studera/faq/",
     "category": "dead_end_answer",
-    "language": ""
+    "language": "sv"
   },
   {
     "question": "",
@@ -328,17 +356,10 @@
   },
   {
     "question": "Vilka kurser ingår i EASE-programmet?",
-    "expected_answer": "Dessa kurser ingår i EASE-programmet. Eftersom programmet är på engelska så är kursnamnen också på engelska:
-      Renewable Energy Systems – Design and Optimization (5 ECTS)
-      Data Acquisition and Analytics (5 ECTS)
-      Designing Digital Twins (5 ECTS)
-      Changing Energy Systems and Electric Grids (5 ECTS)
-      Automation and Digital Twins (5 ECTS)
-      Predictive Maintenance (5 ECTS)
-      Master´s Thesis 30 ECTS",
+    "expected_answer": "Dessa kurser ingår i EASE-programmet. Eftersom programmet är på engelska så är kursnamnen också på engelska:\nRenewable Energy Systems – Design and Optimization (5 ECTS)\nData Acquisition and Analytics (5 ECTS)\nDesigning Digital Twins (5 ECTS)\nChanging Energy Systems and Electric Grids (5 ECTS)\nAutomation and Digital Twins (5 ECTS)\nPredictive Maintenance (5 ECTS)\nMaster´s Thesis 30 ECTS",
     "source_urls": "https://www.ha.ax/en/ease/",
     "category": "cross_language_retrieval",
-    "language": ""
+    "language": "sv"
   },
   {
     "question": "Vad kostar EASE-programmet för sökande utanför EU/EES?",
