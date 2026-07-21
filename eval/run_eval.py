@@ -1,4 +1,12 @@
-# run_eval will run RAGAS evaluation on all questions except "out of scope" which will use check_refusal instead
+'''
+run_eval will run RAGAS evaluation on all questions except "out of scope" which will use check_refusal instead
+MISSING:
+
+- real answers for ragas_results &  refusal_results
+- RAGAS scoring for ragas_results
+- Writing results to a file
+- RAGAS value (average scores per metric)
+'''
 
 from schema import load_golden_set
 from check_refusal import check_out_of_scope
@@ -36,8 +44,9 @@ def run_eval(answer_fn, golden_path="data/golden_set/golden_set.json", eval_labe
 
 '''
 returns fake but shaped-correctly output used in the dict for RAGAS, to test the loop above
-before v1_adapter exists
+before an answer adapter exists
 '''
+
 def stub_answer_fn(question: str) -> AnswerResult:
     return {
         "answer": "Jag kan tyvärr bara hjälpa till med frågor om Högskolan på Åland och dess utbildningar. För övriga frågor kan du kontakta info@ha.ax.",
