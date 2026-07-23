@@ -10,3 +10,6 @@ chroma_db/
 *.egg-info/
 
 notes.txt
+REFERENCES.md
+
+eval/eval_results/
