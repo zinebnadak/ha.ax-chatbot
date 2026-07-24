@@ -1,5 +1,5 @@
 # Deepeval guardrail 
-# Red-teams the bot with generated (not fixed) prompt injection / roleplay attacks, checking it never leaks its system prompt; exits non-zero if any attack succeeds.
+# Red-teams the bot with generated (not fixed) prompt injection / roleplay attacks, checking it never leaks its system prompt; exits non-zero if any attack succeeds (leaks)
 
 import sys
 from deepteam import red_team
