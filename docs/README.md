@@ -27,7 +27,7 @@ The RAG chatbot backend.
 ---
 
 ## Handoff
-See [DEPLOY.md](DEPLOY.md) how I made step-by-step deployment instructions for ha.ax IT staff.
+See [DEPLOY.md](/docs/DEPLOY.md) how I made step-by-step deployment instructions for ha.ax IT staff.
 
 Made by Zineb Nadak
 
