@@ -86,4 +86,4 @@ def build_system_prompt(context: str, language: str) -> str:
     return SYSTEM_PROMPT_TEMPLATE.replace("{context}", context).replace("{language}", language)
 
 
-print(build_system_prompt("this is context", "sv"))
+# print(build_system_prompt("this is context", "sv"))
