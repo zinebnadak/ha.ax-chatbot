@@ -1,18 +1,30 @@
-# Send an HTTP request -> Receive the HTML/JSON response -> Parse the DOM -> Select elements -> Store structured data as json in /data
-# uv run playwright install chromium
-# input?
-# output?
-# type/shape of output?
+'''
+Each URL in urls.py:
+   1. GET raw HTML (requests)
+   2. Strip known non-content tags/sections (subtractive, not selector-based)
+   3. Get remaining text
+   4. Wrap in a record (url, section, lang, content, content_length, scraped_at)
+   5. Save as /data/{section}/{slug}.json
 
-import asyncio
-from crawl4ai import *
+https://www.ha.ax/wp-json/ , https://www.open.ax/wp-json/, https://bibliotek.ha.ax/wp-json/ - targeting the WP REST API in case needed
 
-async def main():
-    async with AsyncWebCrawler() as crawler:
-        result = await crawler.arun(
-            url="https://www.ha.ax",
-        )
-        print(result.markdown)
+'''
 
-if __name__ == "__main__":
-    asyncio.run(main())
+
+import requests
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+from bs4 import BeautifulSoup
+
+def clean(soup):
+
+    return clean_soup
+
+def scraper(urls: dict, section: str, lang: str = "sv"):
+
+    print(f"Scraped {name} from {url} to {file_path} ({len(text)} chars)")
+
+
+
+    

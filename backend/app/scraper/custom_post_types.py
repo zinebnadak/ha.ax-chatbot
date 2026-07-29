@@ -1,0 +1,1 @@
+# for non-standard content types (fact cards, structured data), hit their specific REST endpoints too
