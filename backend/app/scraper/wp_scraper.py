@@ -17,14 +17,60 @@ from pathlib import Path
 from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 
-def clean(soup):
 
-    return clean_soup
+# Test dict:
+
+URLS = {
+    "home": {
+        "sv": ["https://www.ha.ax"]
+    },
+
+    "bibliotek": { 
+    "sv": [
+        "https://bibliotek.ha.ax",
+        "https://bibliotek.ha.ax/om-biblioteket/"
+    ],
+    "en": [
+        "https://bibliotek.ha.ax/en/",
+        "https://bibliotek.ha.ax/en/about-the-library/"
+        ],
+    },
+}
+
+
+
+def clean(soup):
+    for tag in soup(["script", "style", "nav", "footer", "header"]):
+        tag.decompose()
+    return soup
+
 
 def scraper(urls: dict, section: str, lang: str = "sv"):
+    for url in urls[section][lang]:
+        data = requests.get(url)
+        soup = BeautifulSoup(data.text, "html.parser")
 
-    print(f"Scraped {name} from {url} to {file_path} ({len(text)} chars)")
+        cleaned_soup = clean(soup)
+        title = soup.title.text
+        text = cleaned_soup.get_text(separator="\n", strip=True)
+        url_label = url.rstrip("/").split("/")[-1]
+        
+        metadata_record = {
+            "url": url,
+            "section": section,
+            "lang": lang,
+            "scraped_at": datetime.now().isoformat(),
+            "title": title,
+            "text": text,
+        }
+
+        directory = Path(f"data/{section}/{lang}")
+        directory.mkdir(parents=True, exist_ok=True)
+        file_name = directory / f"{url_label}.json"
+
+        with open (file_name, "w", encoding="utf-8") as f:
+                json.dump(metadata_record, f, ensure_ascii=False, indent=2)
+        print(f"Scraped {url} from {section}/{lang} to {file_name} - Text is {len(text)} chars.")
 
 
-
-    
+print(scraper(URLS, "home"))
