@@ -11,7 +11,30 @@ def clean(soup):
     for tag in soup.select('[class*="sbi"]'):
         tag.decompose()
     return soup
-
+    
+def extract_headings(soup):
+    parts = []
+    seen = set()
+    tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "a"]
+    for heading in soup.find_all(tags):
+        if heading.name in ("p", "li") and heading.find_parent(["p", "li"]):
+            continue
+        if heading.name == "a" and heading.find_parent(["h1", "h2", "h3", "h4", "h5", "h6", "p", "li"]):
+            continue
+        text = heading.get_text(separator=" ", strip=True)
+        if not text:
+            continue
+        is_heading = heading.name.startswith("h")
+        if not is_heading:
+            if text in seen:
+                continue
+            seen.add(text)
+        if is_heading:
+            level = int(heading.name[1])
+            parts.append(f"\n\n{'#' * level} {text}\n")
+        else:
+            parts.append(text)
+    return "\n".join(parts)
 
 def scraper(urls: dict, section: str, lang: str = "sv"):
     for url in urls[section][lang]:
@@ -25,7 +48,7 @@ def scraper(urls: dict, section: str, lang: str = "sv"):
         soup = BeautifulSoup(data.text, "html.parser")
         cleaned_soup = clean(soup)
         title = soup.title.text
-        text = cleaned_soup.get_text(separator="\n", strip=True)
+        text = extract_headings(cleaned_soup)
         url_label = url.rstrip("/").split("/")[-1]
         
         metadata_record = {
