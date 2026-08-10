@@ -24,6 +24,16 @@ def create_parent_chunks(sections: list[str], page: dict) -> list[dict]:
     
     return parents
 
+def split_parent_text(text: str, max_words: int = 100) -> list[str]:
+    words = text.split()
+    children = []
+
+    for start in range(0,len(words), max_words):
+        child_words = words[start:start + max_words]
+        children.append(" ".join(child_words))
+    return children
+
+
 # Testing
 page_path = Path("/Users/zizo/ha.ax-chatbot/data/bibliotek/en/about-the-library.json")
 page = load_page(page_path)
@@ -37,7 +47,16 @@ for section in sections:
     print(section)
     print()
 
+
 parents = create_parent_chunks(sections, page)
 for parent in parents:
     print(parent)
+    print()
+
+first_parent = parents[0]
+child_texts = split_parent_text(first_parent["text"])
+
+for child_text in child_texts:
+    print("CHILD:")
+    print(child_text)
     print()
