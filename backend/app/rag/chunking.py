@@ -33,6 +33,19 @@ def split_parent_text(text: str, max_words: int = 100) -> list[str]:
         children.append(" ".join(child_words))
     return children
 
+def create_child_chunks(parent: dict) -> list[dict]:
+    child_texts = split_parent_text(parent["text"])
+    children = []
+
+    for index, child_text in enumerate(child_texts):
+        child = {
+            "id": f"{parent['id']}_child-{index}",
+            "parent_id": parent["id"],
+            "text": child_text,
+        }
+        children.append(child)
+        
+    return children
 
 # Testing
 page_path = Path("/Users/zizo/ha.ax-chatbot/data/bibliotek/en/about-the-library.json")
@@ -60,3 +73,7 @@ for child_text in child_texts:
     print("CHILD:")
     print(child_text)
     print()
+
+children = create_child_chunks(parents[0])
+for child in children:
+    print(child)
