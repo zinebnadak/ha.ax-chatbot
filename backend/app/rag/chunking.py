@@ -67,8 +67,6 @@ def load_pages(data_folder: Path) -> list[dict]:
 
     return pages 
 
-print(load_pages(Path("/Users/zizo/ha.ax-chatbot/data")))
-
 def chunk_all_pages(pages: list[dict]) -> tuple[list[dict], list[dict]]:
     all_parents = []
     all_children = []
@@ -85,8 +83,10 @@ def chunk_all_pages(pages: list[dict]) -> tuple[list[dict], list[dict]]:
         
     return all_parents, all_children
 
-    
 
+
+
+# Count prints 
 data_folder = Path("data")
 pages = load_pages(data_folder)
 
@@ -95,36 +95,3 @@ parents, children = chunk_all_pages(pages)
 print(f"Pages: {len(pages)}")
 print(f"Parents: {len(parents)}")
 print(f"Children: {len(children)}")
-
-
-
-'''
-# Testing
-page_path = Path("/Users/zizo/ha.ax-chatbot/data/bibliotek/en/about-the-library.json")
-page = load_page(page_path)
-
-title = page["title"]
-text = page["text"]
-
-sections = split_into_sections(text)
-for section in sections:
-    print("SECTION:")
-    print(section)
-    print()
-
-
-parents = create_parent_chunks(sections, page)
-for parent in parents:
-    print(parent)
-    print()
-
-
-all_children = []
-
-for parent in parents:
-    children = create_child_chunks(parent)
-    all_children.extend(children)
-
-for child in all_children:
-    print(child)
-'''
