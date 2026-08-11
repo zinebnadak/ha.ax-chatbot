@@ -1,5 +1,6 @@
 import json 
 from pathlib import Path 
+import re
 
 def load_page(file_path: Path) -> dict:
     with file_path.open("r", encoding="utf-8") as file:
@@ -25,12 +26,22 @@ def create_parent_chunks(sections: list[str], page: dict) -> list[dict]:
     return parents
 
 def split_parent_text(text: str, max_words: int = 100) -> list[str]:
-    words = text.split()
+    sentences = re.split(r"(?<=[.!?])\s+", text.strip()) # The pattern means: split at whitespace immediately after ., !, or ?
     children = []
+    current = ""
 
-    for start in range(0,len(words), max_words):
-        child_words = words[start:start + max_words]
-        children.append(" ".join(child_words))
+    for sentence in sentences:
+        possible_child = f"{current} {sentence}".strip()
+
+        if current and len(possible_child.split()) > max_words: # A child needs to have full sentences that are in total less than 100 words.
+            children.append(current)
+            current = sentence
+        else:
+            current = possible_child
+
+    if current:
+        children.append(current)
+
     return children
 
 def create_child_chunks(parent: dict) -> list[dict]:
