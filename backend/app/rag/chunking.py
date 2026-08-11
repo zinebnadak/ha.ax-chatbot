@@ -66,14 +66,12 @@ for parent in parents:
     print(parent)
     print()
 
-first_parent = parents[0]
-child_texts = split_parent_text(first_parent["text"])
 
-for child_text in child_texts:
-    print("CHILD:")
-    print(child_text)
-    print()
+all_children = []
 
-children = create_child_chunks(parents[0])
-for child in children:
+for parent in parents:
+    children = create_child_chunks(parent)
+    all_children.extend(children)
+
+for child in all_children:
     print(child)
