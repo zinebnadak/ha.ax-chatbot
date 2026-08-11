@@ -58,6 +58,18 @@ def create_child_chunks(parent: dict) -> list[dict]:
         
     return children
 
+def load_pages(data_folder: Path) -> list[dict]:
+    pages = []
+
+    for file_path in data_folder.rglob("*.json"):  #rglob() searches a folder and all folders inside it for files file paths ending with .json
+        page = load_page(file_path)
+        pages.append(page)
+
+    return pages 
+
+print(load_pages(Path("/Users/zizo/ha.ax-chatbot/data")))
+
+'''
 # Testing
 page_path = Path("/Users/zizo/ha.ax-chatbot/data/bibliotek/en/about-the-library.json")
 page = load_page(page_path)
@@ -86,3 +98,4 @@ for parent in parents:
 
 for child in all_children:
     print(child)
+'''
