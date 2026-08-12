@@ -37,7 +37,7 @@ def create_parent_chunks(sections: list[str], page: dict) -> list[dict]:
     return parents
 
 def split_parent_text(text: str, max_words: int = 100) -> list[str]:
-    sentences = re.split(r"(?<=[.!?])\s+|\n+", text.strip()) # The pattern means: # Split into sentences: split after ./!/? followed by whitespace, or on any run of newlines / line-broken text 
+    sentences = re.split(r"(?<=[.!?])\s+|\n+", text.strip()) # The pattern means:split after ./!/? followed by whitespace, or on any run of newlines / line-broken text 
     children = []
     current = ""
 
