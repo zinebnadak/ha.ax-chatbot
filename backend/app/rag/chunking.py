@@ -7,8 +7,19 @@ def load_page(file_path: Path) -> dict:
         return json.load(file) 
 
 def split_into_sections(text: str) -> list[str]:
-    sections = text.split("## ")
-    return sections
+    sections = re.split(r"(?m)^#{1,6}\s+", text) # beginning of a line, between 1 and 6 # symbols and one or more spaces
+
+    cleaned_sections = [
+        section.strip()
+        for section in sections
+        if section.strip()
+    ]
+
+    return [
+        section
+        for section in cleaned_sections
+        if len(section.split()) >= 5
+    ]
 
 def create_parent_chunks(sections: list[str], page: dict) -> list[dict]:
     parents = [] # a list of dicts
@@ -91,7 +102,11 @@ data_folder = Path("data")
 pages = load_pages(data_folder)
 
 parents, children = chunk_all_pages(pages)
+print(parents)
+print(children)
 
 print(f"Pages: {len(pages)}")
 print(f"Parents: {len(parents)}")
 print(f"Children: {len(children)}")
+
+print(pages)
