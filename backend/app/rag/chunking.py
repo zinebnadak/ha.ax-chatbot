@@ -108,5 +108,3 @@ print(children)
 print(f"Pages: {len(pages)}")
 print(f"Parents: {len(parents)}")
 print(f"Children: {len(children)}")
-
-print(pages)
