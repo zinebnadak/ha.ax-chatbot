@@ -27,3 +27,5 @@ if __name__ == "__main__":
     golden_set_path = Path(__file__).parent.parent / "eval" / "golden_set.json"
     print(load_golden_set(golden_set_path))
 
+
+def embed_texts (model_name: str, texts: list[str]) -> list[list[float]]

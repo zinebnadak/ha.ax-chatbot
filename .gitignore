@@ -7,6 +7,8 @@ chroma_db/
 .ragas_cache/
 .pytest_cache/
 
+dist/
+build/
 *.egg-info/
 
 notes.txt
