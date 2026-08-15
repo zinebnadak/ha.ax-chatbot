@@ -96,7 +96,7 @@ def chunk_all_pages(pages: list[dict]) -> tuple[list[dict], list[dict]]:
 
 
 
-
+'''
 # Count prints 
 data_folder = Path("data")
 pages = load_pages(data_folder)
@@ -108,3 +108,4 @@ print(children)
 print(f"Pages: {len(pages)}")
 print(f"Parents: {len(parents)}")
 print(f"Children: {len(children)}")
+'''
