@@ -20,6 +20,7 @@ from pathlib import Path
 import json
 from ha_rag_package.app.rag.chunking import chunk_all_pages, load_pages
 from typing import Callable
+import numpy as np
 
 def load_golden_set(file_path: Path) -> list[dict]:
     with file_path.open("r", encoding="utf-8") as file:
@@ -43,11 +44,33 @@ def chunk_corpus(pages: list[dict]) -> list[dict]:
 
     return children
 
+# should do ONE job
 def embed_chunks (children: list[dict], embedding_fn: Callable[[str], list[float]] ) -> list[dict]: 
     for item in children:
         item["embedding"] = embedding_fn(item["text"]) # fn returns list[float] eg. the embedding 
     
     return children
+
+# should do ONE job
+def embed_question(question: str, embedding_fn: Callable[[str], list[float]] ) -> list[float]:
+    return embedding_fn(question)
+
+# function computing cosine similarity
+def cosine_similarity(child_embedding: list[float], question_embedding: list[float]) -> float:
+    dot_product = np.dot_product(vec_a, vec_b)
+    magnitude_a = np.linalg.norm(vec_a)
+    magnitude_b = np.linalg.norm(vec_b)
+    return dot_product / (magnitude_a * magnitude_b) 
+
+def retrieve_top_k(children: list[dict], question_embedding: list[float], k: int) -> list[dict]:
+    child_similarity_scores = [] # a list of tuples with score and full child dict
+    for item in children:
+        compute_cos_sim = cosine_similarity(item["embedding"], question_embedding)
+        child_similarity_scores.append((compute_cos_sim, item))
+
+    sorted_similarity_scores = sorted(child_similarity_scores, key=lambda x: x[0], reverse=True) # sort by score only. The whole tuple will throw an error comparing dicts...
+    top_k_items = [tuple_item[1] for tuple_item in sorted_similarity_scores[:k]] # top k, item in the tuple
+    return top_k_items
 
 '''
 if __name__ == "__main__":
