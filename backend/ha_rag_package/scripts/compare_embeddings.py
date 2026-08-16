@@ -19,6 +19,7 @@ Models I will be comparing:
 from pathlib import Path 
 import json
 from ha_rag_package.app.rag.chunking import chunk_all_pages, load_pages
+from typing import Callable
 
 def load_golden_set(file_path: Path) -> list[dict]:
     with file_path.open("r", encoding="utf-8") as file:
@@ -42,7 +43,11 @@ def chunk_corpus(pages: list[dict]) -> list[dict]:
 
     return children
 
-
+def embed_chunks (children: list[dict], embedding_fn: Callable[[str], list[float]] ) -> list[dict]: 
+    for item in children:
+        item["embedding"] = embedding_fn(item["text"]) # fn returns list[float] eg. the embedding 
+    
+    return children
 
 '''
 if __name__ == "__main__":
