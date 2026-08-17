@@ -72,6 +72,13 @@ def retrieve_top_k(children: list[dict], question_embedding: list[float], k: int
     top_k_items = [tuple_item[1] for tuple_item in sorted_similarity_scores[:k]] # top k, item in the tuple
     return top_k_items
 
+def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
+    top_k_urls = [url_entry["url"] for url_entry in top_k_items[:k]]
+    expected_url = golden_item["url"]
+
+    return expected_url in top_k_urls 
+
+
 '''
 if __name__ == "__main__":
 
