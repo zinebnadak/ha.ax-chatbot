@@ -11,10 +11,18 @@ Models I will be comparing:
 - `text-embedding-3-large
 - google gemini embeddings 001
 - cohere embed v4 
-- voyage multilingual -2`
+- voyage multilingual-2`
 
 '''
 # Run command: uv run backend/ha_rag_package/scripts/compare_embeddings.py
+
+EMBEDDING_MODELS = {
+    "text-embedding-3-small": embed_with_openai_small,
+    "text-embedding-3-large": embed_with_openai_large,
+    "google-gemini-embeddings-001": embed_with_gemini_001,
+    "cohere-embed-v4": embed_with_cohere_v4,
+    "voyage-multilingual-2": embed_with_voyagemultilingual_2
+}
 
 from pathlib import Path 
 import json
@@ -57,10 +65,10 @@ def embed_question(question: str, embedding_fn: Callable[[str], list[float]] ) -
 
 # function computing cosine similarity
 def cosine_similarity(child_embedding: list[float], question_embedding: list[float]) -> float:
-    dot_product = np.dot_product(vec_a, vec_b)
-    magnitude_a = np.linalg.norm(vec_a)
-    magnitude_b = np.linalg.norm(vec_b)
-    return dot_product / (magnitude_a * magnitude_b) 
+    dot = np.dot(child_embedding, question_embedding)
+    magnitude_a = np.linalg.norm(child_embedding)
+    magnitude_b = np.linalg.norm(question_embedding)
+    return dot / (magnitude_a * magnitude_b)
 
 def retrieve_top_k(children: list[dict], question_embedding: list[float], k: int) -> list[dict]:
     child_similarity_scores = [] # a list of tuples with score and full child dict
@@ -74,23 +82,37 @@ def retrieve_top_k(children: list[dict], question_embedding: list[float], k: int
 
 def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
     top_k_urls = [url_entry["url"] for url_entry in top_k_items[:k]]
-    expected_url = golden_item["url"]
+    expected_urls = golden_item["source_urls"]
+    return bool(set(top_k_urls) & set(expected_urls)) #is_hit now compares two lists of urls (using set intersection) instead of one string, since source_urls in  golden set is a list ofmultiple correct answers.
 
-    return expected_url in top_k_urls 
 
-
-'''
 if __name__ == "__main__":
 
-    # Load the golden set
+    # Chunk corpus befor model loop
+    data_folder = Path("data")
+    pages = load_pages(data_folder)
+    children_with_urls = chunk_corpus(pages) 
+
     golden_set_path = Path(__file__).parent.parent / "eval" / "golden_set.json"
-    print(load_golden_set(golden_set_path))
-'''
+    golden_set_items = load_golden_set(golden_set_path)
 
-    # Chunk corpus
-data_folder = Path("data")
-pages = load_pages(data_folder)
-print(chunk_corpus(pages))
+    for model_name, embed_fn in EMBEDDING_MODELS.items():
+        children_with_embeddings = embed_chunks(children_with_urls, embed_fn) #overwrites with next models embedding 
+        hits_at_1 = 0
+        hits_at_3 = 0
 
+        for item in golden_set_items:
+            question = item["question"]
+            embedded_question = embed_question(question, embed_fn)
+            top_k = retrieve_top_k(children_with_embeddings, embedded_question, 3)
+            if is_hit(top_k, item, 1):
+                hits_at_1 += 1
+            if is_hit(top_k, item, 3):
+                hits_at_3 += 1
+        
+        total = len(golden_set_items)
+        print(f"{model_name}: hit@1 = {hits_at_1}/{total}, hit@3 = {hits_at_3}/{total}")
+    
+    
 
 
