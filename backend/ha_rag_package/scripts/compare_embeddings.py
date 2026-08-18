@@ -114,5 +114,14 @@ if __name__ == "__main__":
         print(f"{model_name}: hit@1 = {hits_at_1}/{total}, hit@3 = {hits_at_3}/{total}")
     
     
+def embed_with_openai_small():
+
+def embed_with_openai_large():
+
+def embed_with_gemini_001():
+
+def embed_with_cohere_v4():
+
+def embed_with_voyagemultilingual_2():
 
 
