@@ -14,8 +14,10 @@ Models I will be comparing:
 - voyage multilingual-2`
 
 '''
+
 # Run command: uv run backend/ha_rag_package/scripts/compare_embeddings.py
 
+'''
 EMBEDDING_MODELS = {
     "text-embedding-3-small": embed_with_openai_small,
     "text-embedding-3-large": embed_with_openai_large,
@@ -23,12 +25,20 @@ EMBEDDING_MODELS = {
     "cohere-embed-v4": embed_with_cohere_v4,
     "voyage-multilingual-2": embed_with_voyagemultilingual_2
 }
+'''
 
 from pathlib import Path 
 import json
 from ha_rag_package.app.rag.chunking import chunk_all_pages, load_pages
 from typing import Callable
 import numpy as np
+
+from dotenv import load_dotenv
+from openai import OpenAI
+
+# load environment variables and create client instances once. 
+load_dotenv()
+client = OpenAI()
 
 def load_golden_set(file_path: Path) -> list[dict]:
     with file_path.open("r", encoding="utf-8") as file:
@@ -85,7 +95,7 @@ def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
     expected_urls = golden_item["source_urls"]
     return bool(set(top_k_urls) & set(expected_urls)) #is_hit now compares two lists of urls (using set intersection) instead of one string, since source_urls in  golden set is a list ofmultiple correct answers.
 
-
+'''
 if __name__ == "__main__":
 
     # Chunk corpus befor model loop
@@ -113,9 +123,19 @@ if __name__ == "__main__":
         total = len(golden_set_items)
         print(f"{model_name}: hit@1 = {hits_at_1}/{total}, hit@3 = {hits_at_3}/{total}")
     
-    
-def embed_with_openai_small():
+'''
 
+def embed_with_openai_small(chunk: str) -> list[float]:
+    #body just uses that alreafy crated client 
+    response = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=chunk
+    )
+    return response.data[0].embedding
+
+print(embed_with_openai_small("hello world")[:5])
+
+'''
 def embed_with_openai_large():
 
 def embed_with_gemini_001():
@@ -123,5 +143,9 @@ def embed_with_gemini_001():
 def embed_with_cohere_v4():
 
 def embed_with_voyagemultilingual_2():
+'''
+
+
+
 
 
