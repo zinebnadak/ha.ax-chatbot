@@ -17,15 +17,6 @@ Models I will be comparing:
 
 # Run command: uv run backend/ha_rag_package/scripts/compare_embeddings.py
 
-'''
-EMBEDDING_MODELS = {
-    "text-embedding-3-small": embed_with_openai_small,
-    "text-embedding-3-large": embed_with_openai_large,
-    "google-gemini-embeddings-001": embed_with_gemini_001,
-    "cohere-embed-v4": embed_with_cohere_v4,
-    "voyage-multilingual-2": embed_with_voyagemultilingual_2
-}
-'''
 
 from pathlib import Path 
 import json
@@ -95,7 +86,26 @@ def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
     expected_urls = golden_item["source_urls"]
     return bool(set(top_k_urls) & set(expected_urls)) #is_hit now compares two lists of urls (using set intersection) instead of one string, since source_urls in  golden set is a list ofmultiple correct answers.
 
+def embed_with_openai_small(chunk: str) -> list[float]:
+    #body just uses that alreafy crated client 
+    response = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=chunk
+    )
+    return response.data[0].embedding
+
+EMBEDDING_MODELS = {
+    "text-embedding-3-small": embed_with_openai_small
+}
+
 '''
+    "text-embedding-3-large": embed_with_openai_large,
+    "google-gemini-embeddings-001": embed_with_gemini_001,
+    "cohere-embed-v4": embed_with_cohere_v4,
+    "voyage-multilingual-2": embed_with_voyagemultilingual_2
+}
+'''
+
 if __name__ == "__main__":
 
     # Chunk corpus befor model loop
@@ -123,17 +133,10 @@ if __name__ == "__main__":
         total = len(golden_set_items)
         print(f"{model_name}: hit@1 = {hits_at_1}/{total}, hit@3 = {hits_at_3}/{total}")
     
-'''
 
-def embed_with_openai_small(chunk: str) -> list[float]:
-    #body just uses that alreafy crated client 
-    response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=chunk
-    )
-    return response.data[0].embedding
 
-print(embed_with_openai_small("hello world")[:5])
+
+
 
 '''
 def embed_with_openai_large():
