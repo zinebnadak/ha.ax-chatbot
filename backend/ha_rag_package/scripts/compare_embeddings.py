@@ -1,22 +1,30 @@
-'''
-Compare embeddings retrival quality against any golden set (obs the dicts needs to have the same shape to use urls as ground_truth). Metrics: Recall@k and MRR (Mean Reciprocal Rank)
+"""
+Compare embedding retrieval quality against a golden set.
 
-Flow: 
-1. pre-embed the corpus once per model (cache to disk so repeat runs are free)
-2. loop on terminal input for a question index
-3. print all models answers and compare retrieval quality, or compare each models top-k (k *number of chunks most similar to the query) OR just use a similarity threshold
+Metrics:
+- Recall@1
+- Recall@3
+- MRR (Mean Reciprocal Rank)
 
-Models I will be comparing:
-- `text-embedding-3-small`
-- `text-embedding-3-large
-- google gemini embeddings 001
-- cohere embed v4 
-- voyage multilingual-2`
+Flow:
+1. Load and chunk the corpus.
+2. Embed the corpus once per model.
+3. Embed each golden-set question.
+4. Retrieve the most similar chunks.
+5. Compare retrieved URLs against the golden-set source URLs.
 
-'''
+(Cache to disk when you'd otherwise re-run the same model's embedding step more than once, e.g retrieve_top_k/is_hit logic without wanting to re-embed the corpus each time you test a change.)
 
-# Run command: uv run backend/ha_rag_package/scripts/compare_embeddings.py
+Models:
+- text-embedding-3-small
+- text-embedding-3-large
+- gemini-embedding-001
+- cohere-embed-v4
+- voyage-multilingual-2
 
+Run:
+    uv run backend/ha_rag_package/scripts/compare_embeddings.py
+"""
 
 from pathlib import Path 
 import json
@@ -24,13 +32,21 @@ from ha_rag_package.app.rag.chunking import chunk_all_pages, load_pages
 from typing import Callable
 import numpy as np
 
+import os
 from dotenv import load_dotenv
 from openai import OpenAI
+from google import genai
 
 # load environment variables and create client instances once. 
-load_dotenv()
-client = OpenAI()
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+load_dotenv(PROJECT_ROOT / ".env")
 
+openai_client = OpenAI()
+gemini_client = genai.Client(
+    api_key=os.environ["GEMINI_API_KEY"]
+)
+
+# Golden set
 def load_golden_set(file_path: Path) -> list[dict]:
     with file_path.open("r", encoding="utf-8") as file:
         golden_set_file = json.load(file)
@@ -40,6 +56,7 @@ def load_golden_set(file_path: Path) -> list[dict]:
             if item.get("source_urls")
         ]
 
+# Corpus
 def chunk_corpus(pages: list[dict]) -> list[dict]:
     parents, children = chunk_all_pages(pages)
 
@@ -53,18 +70,17 @@ def chunk_corpus(pages: list[dict]) -> list[dict]:
 
     return children
 
-# should do ONE job
+# Embedding (should do ONE job)
 def embed_chunks (children: list[dict], embedding_fn: Callable[[str], list[float]] ) -> list[dict]: 
     for item in children:
         item["embedding"] = embedding_fn(item["text"]) # fn returns list[float] eg. the embedding 
     
     return children
 
-# should do ONE job
 def embed_question(question: str, embedding_fn: Callable[[str], list[float]] ) -> list[float]:
     return embedding_fn(question)
 
-# function computing cosine similarity
+# Similarity / retrieval
 def cosine_similarity(child_embedding: list[float], question_embedding: list[float]) -> float:
     dot = np.dot(child_embedding, question_embedding)
     magnitude_a = np.linalg.norm(child_embedding)
@@ -81,42 +97,53 @@ def retrieve_top_k(children: list[dict], question_embedding: list[float], k: int
     top_k_items = [tuple_item[1] for tuple_item in sorted_similarity_scores[:k]] # top k, item in the tuple
     return top_k_items
 
+# Evaluation
 def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
     top_k_urls = [url_entry["url"] for url_entry in top_k_items[:k]]
     expected_urls = golden_item["source_urls"]
     return bool(set(top_k_urls) & set(expected_urls)) #is_hit now compares two lists of urls (using set intersection) instead of one string, since source_urls in  golden set is a list ofmultiple correct answers.
 
+# Models 
+
 '''
 def embed_with_openai_small(chunk: str) -> list[float]:
     #body just uses that already created client 
-    response = client.embeddings.create(
+    response = openai_client.embeddings.create(
         model="text-embedding-3-small",
+        input=chunk
+    )
+    return response.data[0].embedding
+
+
+def embed_with_openai_large(chunk: str) -> list[float]:
+    response = openai_client.embeddings.create(
+        model="text-embedding-3-large",
         input=chunk
     )
     return response.data[0].embedding
 '''
 
-def embed_with_openai_large(chunk: str) -> list[float]:
-    response = client.embeddings.create(
-        model="text-embedding-3-large",
-        input=chunk
+def embed_with_gemini_2(chunk: str) -> list[float]:
+    result = gemini_client.models.embed_content(
+        model="gemini-embedding-001",
+        contents=chunk
     )
-    return response.data[0].embedding
+    return result.embeddings[0].values
 
 
 
 EMBEDDING_MODELS = {
     #"text-embedding-3-small": embed_with_openai_small,
-    "text-embedding-3-large": embed_with_openai_large
+    #"text-embedding-3-large": embed_with_openai_large,
+    "google-gemini-embeddings-2": embed_with_gemini_2
 }
 
 '''
-    "google-gemini-embeddings-001": embed_with_gemini_001,
     "cohere-embed-v4": embed_with_cohere_v4,
     "voyage-multilingual-2": embed_with_voyagemultilingual_2
-}
 '''
 
+# Main
 if __name__ == "__main__":
 
     # Chunk corpus befor model loop
@@ -144,20 +171,10 @@ if __name__ == "__main__":
         total = len(golden_set_items)
         print(f"{model_name}: hit@1 = {hits_at_1}/{total}, hit@3 = {hits_at_3}/{total}")
     
-
-
-
-
-
 '''
-def embed_with_gemini_001():
-
 def embed_with_cohere_v4():
 
 def embed_with_voyagemultilingual_2():
 '''
-
-
-
 
 
