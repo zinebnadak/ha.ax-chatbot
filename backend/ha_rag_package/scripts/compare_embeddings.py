@@ -86,20 +86,31 @@ def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
     expected_urls = golden_item["source_urls"]
     return bool(set(top_k_urls) & set(expected_urls)) #is_hit now compares two lists of urls (using set intersection) instead of one string, since source_urls in  golden set is a list ofmultiple correct answers.
 
+'''
 def embed_with_openai_small(chunk: str) -> list[float]:
-    #body just uses that alreafy crated client 
+    #body just uses that already created client 
     response = client.embeddings.create(
         model="text-embedding-3-small",
         input=chunk
     )
     return response.data[0].embedding
+'''
+
+def embed_with_openai_large(chunk: str) -> list[float]:
+    response = client.embeddings.create(
+        model="text-embedding-3-large",
+        input=chunk
+    )
+    return response.data[0].embedding
+
+
 
 EMBEDDING_MODELS = {
-    "text-embedding-3-small": embed_with_openai_small
+    #"text-embedding-3-small": embed_with_openai_small,
+    "text-embedding-3-large": embed_with_openai_large
 }
 
 '''
-    "text-embedding-3-large": embed_with_openai_large,
     "google-gemini-embeddings-001": embed_with_gemini_001,
     "cohere-embed-v4": embed_with_cohere_v4,
     "voyage-multilingual-2": embed_with_voyagemultilingual_2
@@ -139,8 +150,6 @@ if __name__ == "__main__":
 
 
 '''
-def embed_with_openai_large():
-
 def embed_with_gemini_001():
 
 def embed_with_cohere_v4():
