@@ -38,6 +38,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from google import genai
 import cohere
+import voyageai
 
 # load environment variables and create client instances once. 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -50,6 +51,7 @@ gemini_client = genai.Client(
 )
 '''
 cohere_client = cohere.ClientV2(api_key=os.environ["COHERE_API_KEY"])
+voyageai_client = voyageai.Client(api_key=os.environ["VOYAGE_API_KEY"])
 
 # Golden set
 def load_golden_set(file_path: Path) -> list[dict]:
@@ -82,8 +84,11 @@ def embed_chunks (children: list[dict], embedding_fn: Callable[[str], list[float
     
     return children
 
-def embed_question(question: str, embedding_fn: Callable[[str], list[float]] ) -> list[float]:
-    return embedding_fn(question)
+def embed_question(question: str, embedding_fn: Callable) -> list[float]:
+    try:
+        return embedding_fn(question, is_query=True)
+    except TypeError:
+        return embedding_fn(question)
 
 # Similarity / retrieval
 def cosine_similarity(child_embedding: list[float], question_embedding: list[float]) -> float:
@@ -127,37 +132,45 @@ def embed_with_openai_large(chunk: str) -> list[float]:
     )
     return response.data[0].embedding
 
+
 def embed_with_gemini_2(chunk: str) -> list[float]:
     result = gemini_client.models.embed_content(
         model="gemini-embedding-001",
         contents=chunk
     )
     return result.embeddings[0].values
-'''
 
-def embed_with_cohere_v4(chunk: str, input_type: str = "search_document") -> list[float]: #Then in embed_question, when calling embedding_fn, you'd need to pass input_type="search_query", but only for Cohere.
+
+def embed_with_cohere_v4(chunk: str, is_query: bool = False) -> list[float]:
+    input_type = "search_query" if is_query else "search_document"
     response = cohere_client.embed(
-        model="embed-v4.0",
-        texts=[chunk],
-        input_type=input_type,
-        output_dimension=1024,
-        embedding_types=["float"]
+        model="embed-v4.0", texts=[chunk], input_type=input_type,
+        output_dimension=1024, embedding_types=["float"]
     )
     time.sleep(0.7)
     return response.embeddings.float[0]
+'''
 
+def embed_with_voyage_3_large(chunk: str, is_query: bool = False) -> list[float]:
+    input_type = "query" if is_query else "document"
+    result = voyageai_client.embed(
+        [chunk], 
+        model="voyage-3-large", 
+        input_type=input_type)
+    return result.embeddings[0]
 
 
 
 EMBEDDING_MODELS = {
     #"text-embedding-3-small": embed_with_openai_small,
     #"text-embedding-3-large": embed_with_openai_large,
-    "cohere-embed-v4": embed_with_cohere_v4
+    #"cohere-embed-v4": embed_with_cohere_v4,
+    "voyage-3-large": embed_with_voyage_3_large,
+
     
 }
 
 '''
-    "voyage-multilingual-2": embed_with_voyagemultilingual_2
     "google-gemini-embeddings-2": embed_with_gemini_2
 '''
 
@@ -188,11 +201,6 @@ if __name__ == "__main__":
         
         total = len(golden_set_items)
         print(f"{model_name}: hit@1 = {hits_at_1}/{total}, hit@3 = {hits_at_3}/{total}")
-    
-'''
-def embed_with_cohere_v4():
 
-def embed_with_voyagemultilingual_2():
-'''
 
 
