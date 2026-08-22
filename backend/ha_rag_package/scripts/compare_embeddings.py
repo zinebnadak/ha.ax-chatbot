@@ -12,8 +12,6 @@ Flow:
 4. Retrieve the most similar chunks.
 5. Compare retrieved URLs against the golden-set source URLs.
 
-(Cache to disk when you'd otherwise re-run the same model's embedding step more than once, e.g retrieve_top_k/is_hit logic without wanting to re-embed the corpus each time you test a change.)
-
 Models:
 - text-embedding-3-small
 - text-embedding-3-large
@@ -110,6 +108,8 @@ def is_hit(top_k_items: list[dict], golden_item: dict, k:int) -> bool:
 
 # Models 
 
+
+# no model active, uncomment to use
 '''
 def embed_with_openai_small(chunk: str) -> list[float]:
     #body just uses that already created client 
@@ -145,8 +145,6 @@ def embed_with_voyage_3_large(chunk: str, is_query: bool = False) -> list[float]
         input_type=input_type)
     return result.embeddings[0]
 
-'''
-
 def embed_with_gemini_001(chunk: str) -> list[float]:
     result = gemini_client.models.embed_content(
         model="gemini-embedding-001",
@@ -154,12 +152,15 @@ def embed_with_gemini_001(chunk: str) -> list[float]:
     )
     return result.embeddings[0].values
 
+'''
+
+# no model active, uncomment to test
 EMBEDDING_MODELS = {
     #"text-embedding-3-small": embed_with_openai_small,
     #"text-embedding-3-large": embed_with_openai_large,
     #"cohere-embed-v4": embed_with_cohere_v4,
     #"voyage-3-large": embed_with_voyage_3_large,
-    "google-gemini-embeddings-001": embed_with_gemini_001   # only one model active, uncommented to test others
+    #"google-gemini-embeddings-001": embed_with_gemini_001   
 }
 
 # Main
