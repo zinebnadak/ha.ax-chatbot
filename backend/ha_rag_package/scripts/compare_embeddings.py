@@ -31,20 +31,25 @@ import json
 from ha_rag_package.app.rag.chunking import chunk_all_pages, load_pages
 from typing import Callable
 import numpy as np
+import time
 
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from google import genai
+import cohere
 
 # load environment variables and create client instances once. 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 load_dotenv(PROJECT_ROOT / ".env")
 
 openai_client = OpenAI()
+'''
 gemini_client = genai.Client(
     api_key=os.environ["GEMINI_API_KEY"]
 )
+'''
+cohere_client = cohere.ClientV2(api_key=os.environ["COHERE_API_KEY"])
 
 # Golden set
 def load_golden_set(file_path: Path) -> list[dict]:
@@ -121,7 +126,6 @@ def embed_with_openai_large(chunk: str) -> list[float]:
         input=chunk
     )
     return response.data[0].embedding
-'''
 
 def embed_with_gemini_2(chunk: str) -> list[float]:
     result = gemini_client.models.embed_content(
@@ -129,18 +133,32 @@ def embed_with_gemini_2(chunk: str) -> list[float]:
         contents=chunk
     )
     return result.embeddings[0].values
+'''
+
+def embed_with_cohere_v4(chunk: str, input_type: str = "search_document") -> list[float]: #Then in embed_question, when calling embedding_fn, you'd need to pass input_type="search_query", but only for Cohere.
+    response = cohere_client.embed(
+        model="embed-v4.0",
+        texts=[chunk],
+        input_type=input_type,
+        output_dimension=1024,
+        embedding_types=["float"]
+    )
+    time.sleep(0.7)
+    return response.embeddings.float[0]
+
 
 
 
 EMBEDDING_MODELS = {
     #"text-embedding-3-small": embed_with_openai_small,
     #"text-embedding-3-large": embed_with_openai_large,
-    "google-gemini-embeddings-2": embed_with_gemini_2
+    "cohere-embed-v4": embed_with_cohere_v4
+    
 }
 
 '''
-    "cohere-embed-v4": embed_with_cohere_v4,
     "voyage-multilingual-2": embed_with_voyagemultilingual_2
+    "google-gemini-embeddings-2": embed_with_gemini_2
 '''
 
 # Main
