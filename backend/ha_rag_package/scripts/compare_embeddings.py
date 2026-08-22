@@ -4,7 +4,6 @@ Compare embedding retrieval quality against a golden set.
 Metrics:
 - Recall@1
 - Recall@3
-- MRR (Mean Reciprocal Rank)
 
 Flow:
 1. Load and chunk the corpus.
@@ -18,9 +17,9 @@ Flow:
 Models:
 - text-embedding-3-small
 - text-embedding-3-large
+- cohere´s embed v4.0
+- voyage_3_large
 - gemini-embedding-001
-- cohere-embed-v4
-- voyage-multilingual-2
 
 Run:
     uv run backend/ha_rag_package/scripts/compare_embeddings.py
@@ -45,13 +44,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 load_dotenv(PROJECT_ROOT / ".env")
 
 openai_client = OpenAI()
-'''
-gemini_client = genai.Client(
-    api_key=os.environ["GEMINI_API_KEY"]
-)
-'''
 cohere_client = cohere.ClientV2(api_key=os.environ["COHERE_API_KEY"])
 voyageai_client = voyageai.Client(api_key=os.environ["VOYAGE_API_KEY"])
+gemini_client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # Golden set
 def load_golden_set(file_path: Path) -> list[dict]:
@@ -133,14 +128,6 @@ def embed_with_openai_large(chunk: str) -> list[float]:
     return response.data[0].embedding
 
 
-def embed_with_gemini_2(chunk: str) -> list[float]:
-    result = gemini_client.models.embed_content(
-        model="gemini-embedding-001",
-        contents=chunk
-    )
-    return result.embeddings[0].values
-
-
 def embed_with_cohere_v4(chunk: str, is_query: bool = False) -> list[float]:
     input_type = "search_query" if is_query else "search_document"
     response = cohere_client.embed(
@@ -149,7 +136,6 @@ def embed_with_cohere_v4(chunk: str, is_query: bool = False) -> list[float]:
     )
     time.sleep(0.7)
     return response.embeddings.float[0]
-'''
 
 def embed_with_voyage_3_large(chunk: str, is_query: bool = False) -> list[float]:
     input_type = "query" if is_query else "document"
@@ -159,25 +145,27 @@ def embed_with_voyage_3_large(chunk: str, is_query: bool = False) -> list[float]
         input_type=input_type)
     return result.embeddings[0]
 
+'''
 
+def embed_with_gemini_001(chunk: str) -> list[float]:
+    result = gemini_client.models.embed_content(
+        model="gemini-embedding-001",
+        contents=chunk
+    )
+    return result.embeddings[0].values
 
 EMBEDDING_MODELS = {
     #"text-embedding-3-small": embed_with_openai_small,
     #"text-embedding-3-large": embed_with_openai_large,
     #"cohere-embed-v4": embed_with_cohere_v4,
-    "voyage-3-large": embed_with_voyage_3_large,
-
-    
+    #"voyage-3-large": embed_with_voyage_3_large,
+    "google-gemini-embeddings-001": embed_with_gemini_001   # only one model active, uncommented to test others
 }
-
-'''
-    "google-gemini-embeddings-2": embed_with_gemini_2
-'''
 
 # Main
 if __name__ == "__main__":
 
-    # Chunk corpus befor model loop
+    # Chunk corpus before model loop
     data_folder = Path("data")
     pages = load_pages(data_folder)
     children_with_urls = chunk_corpus(pages) 
