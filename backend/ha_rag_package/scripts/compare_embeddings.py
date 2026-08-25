@@ -145,6 +145,8 @@ def embed_with_voyage_3_large(chunk: str, is_query: bool = False) -> list[float]
         input_type=input_type)
     return result.embeddings[0]
 
+'''
+
 def embed_with_gemini_001(chunk: str) -> list[float]:
     result = gemini_client.models.embed_content(
         model="gemini-embedding-001",
@@ -152,15 +154,14 @@ def embed_with_gemini_001(chunk: str) -> list[float]:
     )
     return result.embeddings[0].values
 
-'''
 
-# no model active, uncomment to test
+
 EMBEDDING_MODELS = {
     #"text-embedding-3-small": embed_with_openai_small,
     #"text-embedding-3-large": embed_with_openai_large,
     #"cohere-embed-v4": embed_with_cohere_v4,
     #"voyage-3-large": embed_with_voyage_3_large,
-    #"google-gemini-embeddings-001": embed_with_gemini_001   
+    "google-gemini-embeddings-001": embed_with_gemini_001   
 }
 
 # Main
