@@ -25,7 +25,6 @@ def add_chunks_to_db(chunks: list[dict]) -> None: # Each chunk dict needs: id, t
         ],
     )
 
-
 def reset_collection() -> None:
     global collection
     client.delete_collection(COLLECTION_NAME)
@@ -34,27 +33,30 @@ def reset_collection() -> None:
         metadata={"hnsw:space": "cosine"},
     )
 
+def query_db(query_embedding: list[float], k: int = 5) -> list[dict]:
+    results = collection.query(query_embeddings=[query_embedding], n_results=k)
+    chunk_hits = []
+    
+    for i in range(len(results["ids"][0])):
+        chunk_hits.append({
+                "id": results["ids"][0][i],
+                "text": results["documents"][0][i],
+                "url": results["metadatas"][0][i]["url"],
+                "title": results["metadatas"][0][i]["title"],
+                "lang": results["metadatas"][0][i]["lang"],
+                "distance": results["distances"][0][i]
+        })
+    return chunk_hits
+
 
 if __name__ == "__main__":
-    from embeddings import embed_documents
+    from embeddings import embed_documents, embed_query
 
     reset_collection()
 
     test_chunks = [
-        {
-            "id": "1",
-            "text": "The office is open Monday to Friday.",
-            "url": "https://example.com/hours",
-            "title": "Office Hours",
-            "lang": "en",
-        },
-        {
-            "id": "2",
-            "text": "Tuition fees are due at the start of each semester.",
-            "url": "https://example.com/fees",
-            "title": "Tuition",
-            "lang": "en",
-        },
+        {"id": "1", "text": "The office is open Monday to Friday.", "url": "https://example.com/hours", "title": "Office Hours", "lang": "en"},
+        {"id": "2", "text": "Tuition fees are due at the start of each semester.", "url": "https://example.com/fees", "title": "Tuition", "lang": "en"},
     ]
 
     embeddings = embed_documents([c["text"] for c in test_chunks])
@@ -63,5 +65,12 @@ if __name__ == "__main__":
 
     add_chunks_to_db(test_chunks)
 
-    print("count after adding:", collection.count())
-    print(collection.get(ids=["1", "2"]))
+    print("count in collection:", collection.count())  # debug line
+
+    query_embedding = embed_query("When is the office open?")
+    results = query_db(query_embedding, k=2)
+
+    print("number of results:", len(results))  # debug line
+
+    for r in results:
+        print(round(r["distance"], 4), "-", r["title"], "-", r["url"])
