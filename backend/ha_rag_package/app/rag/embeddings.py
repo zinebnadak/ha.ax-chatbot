@@ -14,8 +14,10 @@ def embed_documents(texts: list[str]) -> list[list[float]]:
     response = client.embeddings.create(model=embedding_model, input=texts)
     return [item.embedding for item in response.data]
 
-
+def embed_query(text: str) -> list[float]:
+    response = client.embeddings.create(model=embedding_model, input=text)
+    return response.data[0].embedding
 
 if __name__ == "__main__":
-    documents = embed_documents(["doc one", "doc two", "doc three"])
-    print("documents size:", len(documents), "each length:", len(documents[0]))
+    query = embed_query("When is the office open?")
+    print("query length:", len(query))
