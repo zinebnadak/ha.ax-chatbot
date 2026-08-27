@@ -2,27 +2,17 @@
 
 from rank_bm25 import BM25Okapi
 import re
+from pathlib import Path
+from vector_store import collection
 
-def tokenize(text):
-    return re.findall(r"\w+", text.lower()) # fixes punktuations 
 
-corpus = [
-    "The office is open Monday to Friday.",
-    "Tuition fees are due at the start of each semester.",
-    "Students can apply for financial aid online.",
-    "The library closes at 9pm on weekdays.",
-    "Office hours for academic advising are posted online.",
-]
+# Chroma's collection already store "text "for every chunk
 
-tokenized_corpus = [tokenize(sentence) for sentence in corpus]
-print(tokenized_corpus)
+PROJECT_ROOT = Path(__file__).resolve().parents[4] # index 3 to go four levels up from the file itself
+DATABASE_FOLDER = PROJECT_ROOT / "backend" / "chroma_db"
 
-query = "When is the office open?"
-tokenized_query = tokenize(query)
-print()
-print(tokenized_query)
+result = collection.get(include=["documents", "metadatas"])
+print(len(result["ids"]))  # number of chunks in the collection
 
-bm25 = BM25Okapi(tokenized_corpus)
-scores = bm25.get_scores(tokenized_query)
-print()
-print(scores)
+
+
