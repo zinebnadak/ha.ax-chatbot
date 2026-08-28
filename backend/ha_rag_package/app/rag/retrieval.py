@@ -4,6 +4,8 @@ from rank_bm25 import BM25Okapi
 import re
 from pathlib import Path
 from vector_store import collection
+from embeddings import embed_query
+from vecor_store import query_db
 
 
 # Chroma's collection already store "text "for every chunk
@@ -18,17 +20,16 @@ def tokenize(text):
     return re.findall(r"\w+", text.lower()) # fixes punktuations 
 
 tokenized_corpus = [tokenize(sentence) for sentence in result["documents"]]
-print(tokenized_corpus)
 
-'''
 query = "When is the office open?"
 tokenized_query = tokenize(query)
-print()
-print(tokenized_query)
 
 bm25 = BM25Okapi(tokenized_corpus)
 scores = bm25.get_scores(tokenized_query)
-print()
-print(scores)
-'''
+
+top_n = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:3]
+
+for i in top_n:
+    print(round(scores[i], 4), "-", result["documents"][i])
+
 
