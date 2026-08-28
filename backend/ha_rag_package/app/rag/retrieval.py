@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 from vector_store import collection
 from embeddings import embed_query
-from vecor_store import query_db
+from vector_store import query_db
 
 
 # Chroma's collection already store "text "for every chunk
@@ -29,7 +29,13 @@ scores = bm25.get_scores(tokenized_query)
 
 top_n = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:3]
 
+#BM25 results
 for i in top_n:
     print(round(scores[i], 4), "-", result["documents"][i])
+
+#Dense retrieval results
+query_embedding = embed_query(query)
+dense_results = query_db(query_embedding, k=5)
+print(dense_results)
 
 
