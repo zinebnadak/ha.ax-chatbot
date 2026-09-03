@@ -4,6 +4,7 @@ from pathlib import Path
 from app.rag.chunking import load_pages, chunk_all_pages #using Path as input to load_pages() and then chunk_all_pages() 
 from app.rag.embeddings import embed_documents
 from app.rag.vector_store import add_chunks_to_db, reset_collection
+import json
 
 def enrich_children(children: list[dict], parents: list[dict]) -> list[dict]:# enrich with url, title, lang and later embeddings because add_chunks_to_db() needs them
     parent_dict = {parent["id"]: parent for parent in parents}
@@ -23,6 +24,11 @@ def main():
     parents, children = chunk_all_pages(pages)
 
     # debug line: print(f"pages: {len(pages)}, parents: {len(parents)}, children: {len(children)}")
+
+    parents_path = PROJECT_ROOT / "backend" / "ha_rag_package" / "app" / "rag" / "parents.json"
+    parents_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(parents_path, "w", encoding="utf-8") as f:
+        json.dump(parents, f, ensure_ascii=False, indent=2)
 
     children = enrich_children(children, parents)
 
