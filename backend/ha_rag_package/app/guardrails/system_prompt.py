@@ -82,8 +82,10 @@ SYSTEM_PROMPT_TEMPLATE = """You are the official virtual assistant for Högskola
 
 
 def build_system_prompt(context: str, language: str) -> str:
-    # Assemble the final system prompt for one request.
-    return SYSTEM_PROMPT_TEMPLATE.replace("{context}", context).replace("{language}", language)
+    return SYSTEM_PROMPT_TEMPLATE.format(
+        context=context,
+        language=language,
+    )
 
 
 # print(build_system_prompt("this is context", "sv"))
