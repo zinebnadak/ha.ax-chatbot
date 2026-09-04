@@ -1,5 +1,6 @@
 
 from app.guardrails.system_prompt import build_system_prompt
+from app.rag.retrieval import retrieve_with_context
 
 '''
 This Function formats the retrieved context into a string that can be included in the system prompt. 
@@ -25,6 +26,16 @@ title: {hit["title"]}
 
     return "\n\n---\n\n".join(parts)
 
+'''
+This function builds the RAG prompt by retrieving context based on the user's query, 
+formatting it, and then constructing the system prompt.
+'''
+def build_rag_prompt(query: str, language: str, is_first_message: bool = False) -> str:
+    hits = retrieve_with_context(query)
+    context = format_retrieved_context(hits)
 
-Then pipeline.py supplies:
-is_first_message=True
+    return build_system_prompt(
+        context=context,
+        language=language,
+        is_first_message=is_first_message,
+    )
