@@ -1,6 +1,9 @@
 
 from app.guardrails.system_prompt import build_system_prompt
 from app.rag.retrieval import retrieve_with_context
+from openai import OpenAI
+
+client = OpenAI()
 
 '''
 This Function formats the retrieved context into a string that can be included in the system prompt. 
@@ -39,3 +42,25 @@ def build_rag_prompt(query: str, language: str, is_first_message: bool = False) 
         language=language,
         is_first_message=is_first_message,
     )
+
+'''
+This function generates an answer to the user's query by building the RAG prompt
+,then using the OpenAI API to get a response.
+'''
+
+def generate_answer(query: str, language: str, is_first_message: bool = False) -> str:
+    system_prompt = build_rag_prompt(
+        query=query,
+        language=language,
+        is_first_message=is_first_message,
+    )
+
+    response = client.responses.create(
+        model="gpt-4o-mini",
+        instructions=system_prompt,
+        input=query,
+    )
+
+    return response.output_text
+
+
