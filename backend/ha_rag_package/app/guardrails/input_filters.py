@@ -21,3 +21,9 @@ INJECTION_PATTERNS = [
 ]
 
 _compiled_patterns = [re.compile(p, re.IGNORECASE) for p in INJECTION_PATTERNS]
+
+def _normalize(text: str) -> str:
+    text = text.lower()
+    text = re.sub(r"[^\w\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
