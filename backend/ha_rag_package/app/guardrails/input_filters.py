@@ -27,3 +27,8 @@ def _normalize(text: str) -> str:
     text = re.sub(r"[^\w\s]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
+
+def _check_injection(message: str) -> bool:
+    normalized = _normalize(message)
+    return any(pattern.search(normalized) for pattern in _compiled_patterns)
+
