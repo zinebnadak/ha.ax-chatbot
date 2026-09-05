@@ -1,5 +1,6 @@
 
 from app.guardrails.system_prompt import build_system_prompt
+from app.guardrails.output_filters import filter_output
 from app.rag.retrieval import retrieve_with_context
 from openai import OpenAI
 
@@ -61,6 +62,6 @@ def generate_answer(query: str, language: str, is_first_message: bool = False) -
         input=query,
     )
 
-    return response.output_text
+    return filter_output(response.output_text)
 
 
