@@ -18,6 +18,16 @@ INJECTION_PATTERNS = [
     r"pretend\s+(you\s+are|to\s+be)\b",
     r"jailbreak",
     r"developer\s+mode",
+
+    # Swedish equivalents
+    r"ignorera\s+(alla\s+)?(tidigare|föregående)\s+instruktion",
+    r"bortse\s+från\s+(alla\s+)?(tidigare|föregående)\s+instruktion",
+    r"du\s+är\s+nu\s+en?\b",
+    r"visa\s+(din\s+)?(system\s*)?prompt",
+    r"berätta\s+(vad\s+som\s+står\s+i\s+)?(din\s+)?(system\s*)?prompt",
+    r"agera\s+som\s+en?\b",
+    r"låtsas\s+(vara|att\s+du\s+är)\b",
+    r"utvecklarläge",
 ]
 
 _compiled_patterns = [re.compile(p, re.IGNORECASE) for p in INJECTION_PATTERNS]
