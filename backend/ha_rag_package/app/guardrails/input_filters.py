@@ -6,6 +6,8 @@ For prompt injection regex with word boundaries & text normalization
 
 import re
 
+MAX_LENGTH = 1000
+
 INJECTION_PATTERNS = [
     r"ignore\s+(all\s+)?(previous|prior|above)\s+instructions",
     r"disregard\s+(all\s+)?(previous|prior|above)\s+instructions",
@@ -17,3 +19,5 @@ INJECTION_PATTERNS = [
     r"jailbreak",
     r"developer\s+mode",
 ]
+
+_compiled_patterns = [re.compile(p, re.IGNORECASE) for p in INJECTION_PATTERNS]
