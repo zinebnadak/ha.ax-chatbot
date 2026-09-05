@@ -43,7 +43,8 @@ def _check_injection(message: str) -> bool:
     return any(pattern.search(normalized) for pattern in _compiled_patterns)
 
 def filter_input(message: str, language: str = "English") -> tuple[bool, str]:
-    is_swedish = language.strip().lower().startswith("sv")
+    lang = language.strip().lower()
+    is_swedish = lang.startswith("sv") or lang.startswith("swe")
 
     if not message or not message.strip():
         return False, "Vänligen skriv en fråga." if is_swedish else "Please enter a question."
