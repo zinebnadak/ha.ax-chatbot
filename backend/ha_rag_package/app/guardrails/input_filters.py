@@ -32,3 +32,20 @@ def _check_injection(message: str) -> bool:
     normalized = _normalize(message)
     return any(pattern.search(normalized) for pattern in _compiled_patterns)
 
+def filter_input(message: str, language: str = "English") -> tuple[bool, str]:
+    is_swedish = language.strip().lower().startswith("sv")
+
+    if not message or not message.strip():
+        return False, "Vänligen skriv en fråga." if is_swedish else "Please enter a question."
+
+    if len(message) > MAX_LENGTH:
+        if is_swedish:
+            return False, f"Ditt meddelande är för långt (max {MAX_LENGTH} tecken)."
+        return False, f"Your message is too long (max {MAX_LENGTH} characters)."
+
+    if _check_injection(message):
+        if is_swedish:
+            return False, "Jag kan inte behandla den förfrågan. Ställ en fråga om Högskolan på Åland."
+        return False, "I can't process that request. Please ask a question about Högskolan på Åland."
+
+    return True, message.strip()
