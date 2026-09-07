@@ -4,6 +4,10 @@ Main public faceing protection
 
 import re
 from openai import OpenAI
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+
 
 '''
 1. Prompt injectionprotection using regex with word boundaries & text normalization
@@ -45,6 +49,23 @@ def _check_injection(message: str) -> bool:
     normalized = _normalize(message)
     return any(pattern.search(normalized) for pattern in _compiled_patterns)
 
+
+'''
+2. Moderation (abuse) protection using OpenAI's Moderation API.
+'''
+
+PROJECT_ROOT = Path(__file__).resolve().parents[4]  # .env is in project root, match the depth used eg how many clicks till the root of the project. 
+load_dotenv(PROJECT_ROOT / ".env")
+
+
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
+def _check_if_harmful(message: str) -> bool: # Returns True if message is flagged as harmful
+    result = client.moderations.create(input=message)
+    return result.results[0].flagged
+
+
+
 def filter_input(message: str, language: str = "English") -> tuple[bool, str]:
     lang = language.strip().lower()
     is_swedish = lang.startswith("sv") or lang.startswith("swe")
@@ -62,15 +83,10 @@ def filter_input(message: str, language: str = "English") -> tuple[bool, str]:
             return False, "Jag kan inte behandla den förfrågan. Ställ en fråga om Högskolan på Åland."
         return False, "I can't process that request. Please ask a question about Högskolan på Åland."
 
+    if _check_if_harmful(message):
+        if is_swedish:
+            return False, "Vänligen håll ditt meddelande respektfullt."
+        return False, "Please keep your message respectful."
+    
     return True, message.strip()
 
-
-'''
-2. Moderation (abuse) protection using OpenAI's Moderation API.
-'''
-
-client = OpenAI()
-
-def _check_if_harmful(message: str) -> bool: # Returns True if message is flagged as harmful
-    result = client.moderations.create(input=message)
-    return result.results[0].flagged
