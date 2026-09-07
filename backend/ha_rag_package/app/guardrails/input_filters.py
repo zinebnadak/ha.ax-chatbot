@@ -66,7 +66,7 @@ def filter_input(message: str, language: str = "English") -> tuple[bool, str]:
 
 
 '''
-2. Moderation (abuse) protection using OpenAI's Moderation API
+2. Moderation (abuse) protection using OpenAI's Moderation API.
 '''
 
 client = OpenAI()
