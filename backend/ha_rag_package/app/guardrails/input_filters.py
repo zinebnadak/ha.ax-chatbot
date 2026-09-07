@@ -1,10 +1,13 @@
 '''
 Main public faceing protection
-For abuse OpenAI's Moderation API that detects harmful content in text and images
-For prompt injection regex with word boundaries & text normalization
 '''
 
 import re
+from openai import OpenAI
+
+'''
+1. Prompt injectionprotection using regex with word boundaries & text normalization
+'''
 
 MAX_LENGTH = 1000
 
@@ -60,3 +63,14 @@ def filter_input(message: str, language: str = "English") -> tuple[bool, str]:
         return False, "I can't process that request. Please ask a question about Högskolan på Åland."
 
     return True, message.strip()
+
+
+'''
+2. Moderation (abuse) protection using OpenAI's Moderation API
+'''
+
+client = OpenAI()
+
+def _check_if_harmful(message: str) -> bool: # Returns True if message is flagged as harmful
+    result = client.moderations.create(input=message)
+    return result.results[0].flagged
