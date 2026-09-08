@@ -14,8 +14,16 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from app.rag.pipeline import generate_answer
 from app.guardrails.input_filters import filter_input
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class ChatRequest(BaseModel):
     query: str  
@@ -45,4 +53,3 @@ async def health_check():
 @app.get("/docs")
 def root():
     return {"message": "docs endpoint"}
-
