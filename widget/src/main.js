@@ -1,5 +1,4 @@
 import "./style.css";
-import { getDisclosure } from "./disclosure.js";
 
 const API_URL = "http://127.0.0.1:8000/chat";
 let isFirstMessage = true;
@@ -37,10 +36,6 @@ async function sendMessage() {
   addMessage(query, "user");
   inputEl.value = "";
   sendEl.disabled = true;
-
-  if (isFirstMessage) {
-    addMessage(getDisclosure("Swedish"), "bot");
-  }
 
   try {
     const res = await fetch(API_URL, {
