@@ -37,6 +37,8 @@ async function sendMessage() {
   inputEl.value = "";
   sendEl.disabled = true;
 
+  showTyping();
+
   try {
     const res = await fetch(API_URL, {
       method: "POST",
@@ -49,9 +51,11 @@ async function sendMessage() {
     });
 
     const data = await res.json();
+    hideTyping();
     addMessage(data.answer, "bot");
     isFirstMessage = false;
   } catch (err) {
+    hideTyping();
     addMessage("Något gick fel. Försök igen senare.", "bot");
   } finally {
     sendEl.disabled = false;
@@ -62,3 +66,17 @@ sendEl.addEventListener("click", sendMessage);
 inputEl.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
 });
+
+function showTyping() {
+  const div = document.createElement("div");
+  div.className = "msg bot typing";
+  div.id = "typing-indicator";
+  div.innerHTML = `<span></span><span></span><span></span>`;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function hideTyping() {
+  const typingEl = document.getElementById("typing-indicator");
+  if (typingEl) typingEl.remove();
+}
