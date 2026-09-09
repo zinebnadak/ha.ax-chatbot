@@ -1,7 +1,8 @@
 import "./style.css";
 
 const API_URL = "http://127.0.0.1:8000/chat";
-let isFirstMessage = true;
+let currentLanguage = "Swedish";
+let hasGreeted = false;
 
 const launcherEl = document.getElementById("chat-launcher");
 const containerEl = document.getElementById("chat-container");
@@ -9,17 +10,7 @@ const closeEl = document.getElementById("chat-close");
 const messagesEl = document.getElementById("chat-messages");
 const inputEl = document.getElementById("chat-input");
 const sendEl = document.getElementById("chat-send");
-
-// Open/close toggle
-launcherEl.addEventListener("click", () => {
-  containerEl.classList.remove("hidden");
-  launcherEl.classList.add("hidden");
-});
-
-closeEl.addEventListener("click", () => {
-  containerEl.classList.add("hidden");
-  launcherEl.classList.remove("hidden");
-});
+const suggestionRow = document.getElementById("suggestion-row");
 
 function addMessage(text, sender) {
   const div = document.createElement("div");
@@ -29,35 +20,72 @@ function addMessage(text, sender) {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
-let hasGreeted = false;
+function showTyping() {
+  const div = document.createElement("div");
+  div.className = "msg bot typing";
+  div.id = "typing-indicator";
+  div.innerHTML = `<span></span><span></span><span></span>`;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function hideTyping() {
+  const typingEl = document.getElementById("typing-indicator");
+  if (typingEl) typingEl.remove();
+}
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function showGreeting() {
-  if (hasGreeted) return;
-  hasGreeted = true;
+async function greetInLanguage(lang) {
+  const isEnglish = lang === "English";
 
   showTyping();
   await delay(1200);
   hideTyping();
   addMessage(
-  "Hej! 👋 Jag är Studieassistenten, en AI-assistent för Högskolan på Åland.\n" +
-  "Jag hjälper till med frågor om program, antagning och praktisk info , på svenska eller engelska. Jag kan ha fel ibland, så dubbelkolla viktiga datum, och dela inte personuppgifter här.",
-  "bot"
+    isEnglish
+      ? "Hi! 👋 I'm the Study Assistant, an AI assistant for Åland University of Applied Sciences.\nI help with questions about programmes, admissions, and practical info — in Swedish or English. I can sometimes be wrong, so double-check important dates, and don't share personal data here."
+      : "Hej! 👋 Jag är Studieassistenten, en AI-assistent för Högskolan på Åland.\nJag hjälper till med frågor om program, antagning och praktisk info — på svenska eller engelska. Jag kan ha fel ibland, så dubbelkolla viktiga datum, och dela inte personuppgifter här.",
+    "bot"
   );
 
   showTyping();
   await delay(900);
   hideTyping();
-  addMessage("Vad kan jag hjälpa dig med?", "bot");
+  addMessage(isEnglish ? "How can I help you?" : "Vad kan jag hjälpa dig med?", "bot");
+}
+
+const langOptions = document.querySelectorAll(".lang-option");
+
+langOptions.forEach((option) => {
+  option.addEventListener("click", async () => {
+    const newLang = option.dataset.lang;
+    if (newLang === currentLanguage) return;
+
+    currentLanguage = newLang;
+    langOptions.forEach((o) => o.classList.toggle("active", o.dataset.lang === newLang));
+
+    await greetInLanguage(newLang);
+  });
+});
+
+async function showGreeting() {
+  if (hasGreeted) return;
+  hasGreeted = true;
+  await greetInLanguage("Swedish");
 }
 
 launcherEl.addEventListener("click", () => {
   containerEl.classList.remove("hidden");
   launcherEl.classList.add("hidden");
   showGreeting();
+});
+
+closeEl.addEventListener("click", () => {
+  containerEl.classList.add("hidden");
+  launcherEl.classList.remove("hidden");
 });
 
 async function sendMessage() {
@@ -76,7 +104,7 @@ async function sendMessage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         query: query,
-        language: "Swedish",
+        language: currentLanguage,
       }),
     });
 
@@ -95,17 +123,3 @@ sendEl.addEventListener("click", sendMessage);
 inputEl.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
 });
-
-function showTyping() {
-  const div = document.createElement("div");
-  div.className = "msg bot typing";
-  div.id = "typing-indicator";
-  div.innerHTML = `<span></span><span></span><span></span>`;
-  messagesEl.appendChild(div);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
-function hideTyping() {
-  const typingEl = document.getElementById("typing-indicator");
-  if (typingEl) typingEl.remove();
-}
