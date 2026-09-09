@@ -28,7 +28,6 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     query: str  
     language: str
-    is_first_message: bool = False
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
@@ -42,7 +41,6 @@ async def chat(request: ChatRequest):
     answer = generate_answer(
         query=request.query,
         language=request.language,
-        is_first_message=request.is_first_message,
     )
     return {"answer": answer}
 

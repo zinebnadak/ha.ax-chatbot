@@ -29,6 +29,37 @@ function addMessage(text, sender) {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
+let hasGreeted = false;
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function showGreeting() {
+  if (hasGreeted) return;
+  hasGreeted = true;
+
+  showTyping();
+  await delay(1200);
+  hideTyping();
+  addMessage(
+  "Hej! 👋 Jag är Studieassistenten, en AI-assistent för Högskolan på Åland.\n" +
+  "Jag hjälper till med frågor om program, antagning och praktisk info , på svenska eller engelska. Jag kan ha fel ibland, så dubbelkolla viktiga datum, och dela inte personuppgifter här.",
+  "bot"
+  );
+
+  showTyping();
+  await delay(900);
+  hideTyping();
+  addMessage("Vad kan jag hjälpa dig med?", "bot");
+}
+
+launcherEl.addEventListener("click", () => {
+  containerEl.classList.remove("hidden");
+  launcherEl.classList.add("hidden");
+  showGreeting();
+});
+
 async function sendMessage() {
   const query = inputEl.value.trim();
   if (!query) return;
@@ -46,14 +77,12 @@ async function sendMessage() {
       body: JSON.stringify({
         query: query,
         language: "Swedish",
-        is_first_message: isFirstMessage,
       }),
     });
 
     const data = await res.json();
     hideTyping();
     addMessage(data.answer, "bot");
-    isFirstMessage = false;
   } catch (err) {
     hideTyping();
     addMessage("Något gick fel. Försök igen senare.", "bot");

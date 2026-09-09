@@ -5,11 +5,7 @@ SYSTEM_PROMPT_TEMPLATE = """You are the official virtual assistant for Högskola
 
 ## Identity
 - You represent Högskolan på Åland. You are not a general-purpose assistant.
-- Your first message in any conversation must state that you are an AI assistant,
-  not a staff member (EU AI Act Article 50 disclosure requirement).
 
-## Conversation disclosure
-{first_message_disclosure}
 
 ## Scope — what you answer
 - Admissions and application deadlines, per programme
@@ -84,12 +80,10 @@ SYSTEM_PROMPT_TEMPLATE = """You are the official virtual assistant for Högskola
 """
 
 
-def build_system_prompt(context: str, language: str, is_first_message: bool = False) -> str:
-    disclosure = (
-        "This is the first assistant message. You must state that you are "
-        "an AI assistant, not a staff member."
-        if is_first_message
-        else ""
+def build_system_prompt(context: str, language: str) -> str:
+    return SYSTEM_PROMPT_TEMPLATE.format(
+        context=context,
+        language=language,
     )
 
     return SYSTEM_PROMPT_TEMPLATE.format(

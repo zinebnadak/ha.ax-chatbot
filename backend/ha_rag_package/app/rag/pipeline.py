@@ -34,27 +34,18 @@ title: {hit["title"]}
 This function builds the RAG prompt by retrieving context based on the user's query, 
 formatting it, and then constructing the system prompt.
 '''
-def build_rag_prompt(query: str, language: str, is_first_message: bool = False) -> str:
+def build_rag_prompt(query: str, language: str) -> str:
     hits = retrieve_with_context(query)
     context = format_retrieved_context(hits)
-
-    return build_system_prompt(
-        context=context,
-        language=language,
-        is_first_message=is_first_message,
-    )
+    return build_system_prompt(context=context, language=language)
 
 '''
 This function generates an answer to the user's query by building the RAG prompt
 ,then using the OpenAI API to get a response.
 '''
 
-def generate_answer(query: str, language: str, is_first_message: bool = False) -> str:
-    system_prompt = build_rag_prompt(
-        query=query,
-        language=language,
-        is_first_message=is_first_message,
-    )
+def generate_answer(query: str, language: str) -> str:
+    system_prompt = build_rag_prompt(query=query, language=language)
 
     response = client.responses.create(
         model="gpt-4o-mini",
@@ -62,6 +53,6 @@ def generate_answer(query: str, language: str, is_first_message: bool = False) -
         input=query,
     )
 
-    return filter_output(response.output_text)
+    return response.output_text
 
 
