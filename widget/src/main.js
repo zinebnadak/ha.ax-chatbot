@@ -3,6 +3,7 @@ import "./style.css";
 const API_URL = "http://127.0.0.1:8000/chat";
 let currentLanguage = "Swedish";
 let hasGreeted = false;
+let greetedLanguages = new Set();
 
 const launcherEl = document.getElementById("chat-launcher");
 const containerEl = document.getElementById("chat-container");
@@ -10,7 +11,10 @@ const closeEl = document.getElementById("chat-close");
 const messagesEl = document.getElementById("chat-messages");
 const inputEl = document.getElementById("chat-input");
 const sendEl = document.getElementById("chat-send");
-const suggestionRow = document.getElementById("suggestion-row");
+const titleEl = document.getElementById("chat-title");
+const langOptions = document.querySelectorAll(".lang-option");
+
+updateHeaderTitle(currentLanguage);
 
 function addMessage(text, sender) {
   const div = document.createElement("div");
@@ -38,6 +42,10 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function updateHeaderTitle(lang) {
+  titleEl.textContent = lang === "English" ? "Study Assistant" : "Studieassistent";
+}
+
 async function greetInLanguage(lang) {
   const isEnglish = lang === "English";
 
@@ -55,9 +63,15 @@ async function greetInLanguage(lang) {
   await delay(900);
   hideTyping();
   addMessage(isEnglish ? "How can I help you?" : "Vad kan jag hjälpa dig med?", "bot");
+
+  greetedLanguages.add(lang);
 }
 
-const langOptions = document.querySelectorAll(".lang-option");
+async function showGreeting() {
+  if (hasGreeted) return;
+  hasGreeted = true;
+  await greetInLanguage("Swedish");
+}
 
 langOptions.forEach((option) => {
   option.addEventListener("click", async () => {
@@ -65,17 +79,14 @@ langOptions.forEach((option) => {
     if (newLang === currentLanguage) return;
 
     currentLanguage = newLang;
+    updateHeaderTitle(newLang);
     langOptions.forEach((o) => o.classList.toggle("active", o.dataset.lang === newLang));
 
-    await greetInLanguage(newLang);
+    if (!greetedLanguages.has(newLang)) {
+      await greetInLanguage(newLang);
+    }
   });
 });
-
-async function showGreeting() {
-  if (hasGreeted) return;
-  hasGreeted = true;
-  await greetInLanguage("Swedish");
-}
 
 launcherEl.addEventListener("click", () => {
   containerEl.classList.remove("hidden");
