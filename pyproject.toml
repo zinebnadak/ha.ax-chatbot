@@ -19,6 +19,7 @@ dependencies = [
     "ragas>=0.4.3",
     "rank-bm25>=0.2.2",
     "selenium>=4.46.0",
+    "slowapi>=0.1.10",
     "voyageai>=0.5.0",
 ]
 

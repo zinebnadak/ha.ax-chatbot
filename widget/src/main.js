@@ -119,8 +119,23 @@ async function sendMessage() {
       }),
     });
 
-    const data = await res.json();
     hideTyping();
+
+    if (res.status === 429) {
+      addMessage(
+        currentLanguage === "English"
+          ? "You're sending messages too quickly. Please wait a moment and try again."
+          : "Du skickar meddelanden för snabbt. Vänta en stund och försök igen.",
+        "bot"
+      );
+      return;
+    }
+
+    if (!res.ok) {
+      throw new Error("Request failed");
+    }
+
+    const data = await res.json();
     addMessage(data.answer, "bot");
   } catch (err) {
     hideTyping();
