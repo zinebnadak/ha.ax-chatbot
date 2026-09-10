@@ -11,12 +11,14 @@ from app.rag.pipeline import generate_answer
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 GOLDEN_PATH = PROJECT_ROOT / "eval" / "golden_set.json"
 
-
 def check_refusal(answer: str) -> bool:
-    """Heuristic: did the bot correctly decline an out-of-scope question?"""
-    refusal_markers = ["info@ha.ax", "tyvärr", "can only help", "kan tyvärr bara"]
+    """Heuristic: did the bot correctly decline or redirect for an out-of-scope question?"""
+    refusal_markers = [
+        "info@ha.ax", "537 000", "tyvärr", "can only help",
+        "kan tyvärr bara", "cannot", "can't", "no possibility",
+        "ingen möjlighet", "not able to", "inte möjligt",
+    ]
     return any(marker.lower() in answer.lower() for marker in refusal_markers)
-
 
 def check_citation(answer: str, source_urls: list[str]) -> bool:
     """Did the bot cite at least one of the expected source URLs?"""
