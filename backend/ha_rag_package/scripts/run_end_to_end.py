@@ -1,6 +1,7 @@
 '''
 This script sends every question from the golden set through the full live chatbot pipeline (retrieval + generation + filters) 
 and checks whether out-of-scope questions get refused and in-scope answers cite the right source.
+last result: 47/67 (70,1%)
 '''
 
 import time
