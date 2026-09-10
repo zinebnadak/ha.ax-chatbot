@@ -20,12 +20,18 @@ def check_refusal(answer: str) -> bool:
     ]
     return any(marker.lower() in answer.lower() for marker in refusal_markers)
 
-def check_citation(answer: str, source_urls: list[str]) -> bool:
-    """Did the bot cite at least one of the expected source URLs?"""
-    if not source_urls:
-        return True  # nothing to check against
-    return any(url.rstrip("/") in answer for url in source_urls)
+def normalize_url(url: str) -> str:
+    url = url.strip().rstrip("/")
+    url = url.replace("https://", "").replace("http://", "")
+    url = url.replace("www.", "")
+    return url.lower()
 
+def check_citation(answer: str, source_urls: list[str]) -> bool:
+    """Did the bot cite at least one of the expected source URLs (normalized)?"""
+    if not source_urls:
+        return True
+    normalized_answer = normalize_url(answer)
+    return any(normalize_url(url) in normalized_answer for url in source_urls)
 
 def run_end_to_end(golden_path=GOLDEN_PATH, sleep_between=0.5):
     items = load_golden_set(golden_path)
