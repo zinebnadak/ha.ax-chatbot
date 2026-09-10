@@ -2,6 +2,7 @@
 from app.guardrails.system_prompt import build_system_prompt
 from app.guardrails.output_filters import filter_output
 from app.rag.retrieval import retrieve_with_context
+from app.observability.langfuse_client import langfuse # observability
 from openai import OpenAI
 
 client = OpenAI()
@@ -45,14 +46,20 @@ This function generates an answer to the user's query by building the RAG prompt
 '''
 
 def generate_answer(query: str, language: str) -> str:
-    system_prompt = build_rag_prompt(query=query, language=language)
+    with langfuse.start_as_current_observation(
+        name="generate_answer",
+        as_type="generation",
+        input={"query": query, "language": language},
+    ) as span:
+        system_prompt = build_rag_prompt(query=query, language=language)
 
-    response = client.responses.create(
-        model="gpt-4o-mini",
-        instructions=system_prompt,
-        input=query,
-    )
+        response = client.responses.create(
+            model="gpt-4o-mini",
+            instructions=system_prompt,
+            input=query,
+        )
 
-    return response.output_text
+        answer = filter_output(response.output_text)
+        span.update(output=answer)
 
-
+        return answer
