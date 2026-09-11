@@ -2,7 +2,6 @@
 .env
 __pycache__/
 *.pyc
-chroma_db/
 
 .ragas_cache/
 .pytest_cache/
