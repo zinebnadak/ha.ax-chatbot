@@ -4,6 +4,13 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[4]  # count up to ha.ax-chatbot/
 DATABASE_PATH = PROJECT_ROOT / "backend" / "chroma_db"
 
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
+DATABASE_PATH = PROJECT_ROOT / "backend" / "chroma_db"
+
+print("DEBUG: PROJECT_ROOT =", PROJECT_ROOT)
+print("DEBUG: DATABASE_PATH =", DATABASE_PATH)
+print("DEBUG: DATABASE_PATH exists =", DATABASE_PATH.exists())
+
 client = chromadb.PersistentClient(path=str(DATABASE_PATH))
 
 COLLECTION_NAME = "ha_rag_collection"
