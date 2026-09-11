@@ -1,6 +1,6 @@
 import "./style.css";
 
-const API_URL = "http://127.0.0.1:8000/chat";
+const API_URL = "https://ha-ax-chatbot.onrender.com/chat";
 let currentLanguage = "Swedish";
 let hasGreeted = false;
 let greetedLanguages = new Set();

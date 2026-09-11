@@ -4,7 +4,10 @@ A production ready RAG-powered chatbot that answers questions about programmes a
 
 > This repository contains a revised version of the original ha.ax chatbot demo, incorporating stakeholder feedback and architectural improvements. The original demo repository can be found here: [ha.ax-chatbot-demo](https://github.com/zinebnadak/ha.ax-chatbot-demo.git)
 
-Public preview (Streamlit Community Cloud): [link]()
+
+
+- Public preview (Streamlit Community Cloud): [link]()
+- Backend (FastAPI) on Render: [link](https://ha-ax-chatbot.onrender.com/docs)
 
 ---
 
