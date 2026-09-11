@@ -7,9 +7,11 @@ DATABASE_PATH = PROJECT_ROOT / "backend" / "chroma_db"
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 DATABASE_PATH = PROJECT_ROOT / "backend" / "chroma_db"
 
+'''
 print("DEBUG: PROJECT_ROOT =", PROJECT_ROOT)
 print("DEBUG: DATABASE_PATH =", DATABASE_PATH)
 print("DEBUG: DATABASE_PATH exists =", DATABASE_PATH.exists())
+'''
 
 client = chromadb.PersistentClient(path=str(DATABASE_PATH))
 
@@ -20,8 +22,10 @@ collection = client.get_or_create_collection(
     metadata={"hnsw:space": "cosine"}  # Chroma's default is L2, not cosine — match what we evaluated with
 )
 
+'''
 print("DEBUG: collection count =", collection.count())
 print("DEBUG: chroma_db folder contents =", list(DATABASE_PATH.iterdir()) if DATABASE_PATH.exists() else "MISSING")
+'''
 
 def add_chunks_to_db(chunks: list[dict]) -> None: # Each chunk dict needs: id, text, embedding, url, title, lang
     collection.add(
